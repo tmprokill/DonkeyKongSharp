@@ -1,7 +1,7 @@
 ﻿namespace ClassLib;
 
-public class Wall
+public class Wall : GameObject
 {
-    public Coordinates Position { get; set; }
-    public char Symbol { get; set; }
+    public bool Transparent { get; set; }
+    public override char Symbol { get;  } = '#';
 }

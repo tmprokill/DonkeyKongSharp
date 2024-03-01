@@ -7,7 +7,7 @@ class Program
     static void Main(string[] args)
     {
         //initialization
-        var player = new Player() { Position = new Coordinates() { X = 3, Y = 5 } };
+        var player = new Player() { Position = new Coordinates() { X = 23, Y = 1 } };
         var gameFieldHelper = new FieldHelper();
         var movementHelper = new MovementHelper();
         var gameField = new Field();

@@ -1,7 +1,7 @@
 ﻿namespace ClassLib;
 
-public class Player
+public class Player : GameObject
 {
     public Coordinates Position { get; set; }
-    public char Symbol { get;} = 'P';
+    public override char Symbol { get;} = 'P';
 }
