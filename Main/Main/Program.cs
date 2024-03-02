@@ -2,9 +2,10 @@
 
 namespace Main;
 
-class Program
+internal class Program
 {
-    static void Main(string[] args)
+    
+    internal static void Main(string[] args)
     {
         //initialization
         var player = new Player() { Position = new Coordinates() { X = 23, Y = 1 } };
@@ -28,6 +29,7 @@ class Program
 
             movementHelper.HandleKeyPress(keyInfo.Key, player, gameField.FieldMatrix);
             gameFieldHelper.UpdateField(gameField.FieldMatrix, player);
+            
             gameExecutor.PrintMatrix(gameField.FieldMatrix);
         }
     }

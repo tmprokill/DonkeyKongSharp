@@ -11,14 +11,7 @@ public class GameExecutor
         {
             foreach (var f in t)
             {
-                if (f.Current == null)
-                {
-                    Write($" {f.Init.Symbol} ");
-                }
-                else
-                {
-                    Write($" {f.Current.Symbol} ");
-                }
+                Write(f.Current != null ? $" {f.Current.Symbol} " : $" {f.Init.Symbol} ");
             }
 
             WriteLine();
