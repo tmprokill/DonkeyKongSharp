@@ -4,14 +4,21 @@ namespace Main;
 
 public class GameExecutor
 {
-    public void PrintMatrix(GameObject[][] gameBoard)
+    public void PrintMatrix(Cell[][] gameBoard)
     {
         SetCursorPosition(0,0);
         foreach (var t in gameBoard)
         {
             foreach (var f in t)
             {
-                Write($" {f.Symbol} ");
+                if (f.Current == null)
+                {
+                    Write($" {f.Init.Symbol} ");
+                }
+                else
+                {
+                    Write($" {f.Current.Symbol} ");
+                }
             }
 
             WriteLine();

@@ -2,7 +2,7 @@
 
 public class MovementHelper
 {
-    public void HandleKeyPress(ConsoleKey key, Player player, GameObject[][] gameBoard)
+    public void HandleKeyPress(ConsoleKey key, Player player, Cell[][] gameBoard)
     {
         switch (key)
         {
@@ -21,17 +21,35 @@ public class MovementHelper
         }
     }
 
-    private void MovePlayer(Coordinates cord, Player player, GameObject[][] gameBoard)
+    private void MovePlayer(Coordinates cord, Player player, Cell[][] gameBoard)
     {
-        
         int tempX = cord.X + player.Position.X;
         int tempY = cord.Y + player.Position.Y;
 
-        if (tempX >= 0 && tempX < gameBoard.Length && tempY >= 0 && tempY < gameBoard[0].Length)
+        if (CheckAccessibility((tempX,tempY), gameBoard) && CheckTransparity((tempX, tempY), gameBoard))
         {
-            gameBoard[player.Position.X][player.Position.Y] = new EmptyCell();//неправильно
+            gameBoard[player.Position.X][player.Position.Y].Current = null;
             player.Position.X = tempX;
             player.Position.Y = tempY;
         }
+    }
+
+    private bool CheckAccessibility((int, int) values, Cell[][] gameBoard)
+    {
+        if (values.Item1 >= 0 && values.Item1 < gameBoard.Length && values.Item2 >= 0 && values.Item2 < gameBoard[0].Length)
+        {
+            return true;
+        }
+
+        return false;
+    }
+    private bool CheckTransparity((int,int) values, Cell[][] gameboard)
+    {
+        if (gameboard[values.Item1][values.Item2].Init.Transparent != true)
+        {
+            return false;
+        }
+
+        return true;
     }
 }

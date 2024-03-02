@@ -2,6 +2,6 @@
 
 public class Wall : GameObject
 {
-    public bool Transparent { get; set; }
-    public override char Symbol { get;  } = '#';
+    public override bool Transparent { get; set; } = false;
+    public override char Symbol { get; } = '#';
 }
