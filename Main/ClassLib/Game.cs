@@ -1,7 +1,8 @@
 ﻿namespace ClassLib;
 
-public class Field
+public class Game
 {
+    public int Status { get; set; } = 0;
     public Cell[][] FieldMatrix { get; private set; }
 
     public void GenerateMatrixTemplate(int n)

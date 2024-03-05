@@ -2,7 +2,6 @@
 
 public class FieldHelper
 {
-    //придумать как сохранять в клетках прошлые значения и также понимать, когда будут стенки доступными для прохождения.
     public void InitializeGameField(Cell[][] gameboard)
     {
         for (int i = 0; i < gameboard.Length; i++)
@@ -30,8 +29,16 @@ public class FieldHelper
         }
     }
     
-    public void UpdateField(Cell[][] gameboard, Player player)
+    public static void UpdateField(Cell[][] gameBoard, Player player, int lastX, int lastY)
     {
-        gameboard[player.Position.X][player.Position.Y].Current = player;
+        gameBoard[player.Position.X][player.Position.Y].Current = player;
+        gameBoard[lastX][lastY].Current = null;
     }
+    
+    public static void UpdateField(Cell[][] gameBoard, EnemyFlame enemy, int lastX, int lastY)
+    {
+        gameBoard[enemy.Position.X][enemy.Position.Y].Current = enemy;
+        gameBoard[lastX][lastY].Current = null;
+    }
+    
 }
