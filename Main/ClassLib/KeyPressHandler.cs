@@ -18,6 +18,9 @@ public class KeyPressHandler
             case ConsoleKey.LeftArrow:
                 Player.MovePlayer(new Coordinates(){X = 0, Y = -1}, player, gameBoard);
                 break;
+            case ConsoleKey.H:
+                gameBoard.Status = -1;
+                break;
         }
     }
 }

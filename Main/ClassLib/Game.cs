@@ -3,17 +3,18 @@
 public class Game
 {
     public int Status { get; set; } = 0;
-    public Cell[][] FieldMatrix { get; private set; }
-
-    public void GenerateMatrixTemplate(int n)
+    public Cell[][] FieldMatrix { get; set; }
+    public int Length => FieldMatrix.Length; 
+    public Cell[] this [int x]
     {
-        var result = new Cell[n][];
-        for (var i = 0; i < n; i++)
-        {
-            var row = new Cell[n];
-            result[i] = row;
-        }
-
-        FieldMatrix = result;
+        get => FieldMatrix[x];
+        set => FieldMatrix[x] = value;
     }
+    public Cell this [int x, int y]
+    {
+        get => FieldMatrix[x][y];
+        set => FieldMatrix[x][y] = value;
+    }
+    
+   
 }

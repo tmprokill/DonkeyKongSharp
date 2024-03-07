@@ -7,29 +7,26 @@ public class EnemyFlame : GameObject
     public int Level { get; set; }
     
     public int HealPoints { get; set; }
-
     public override bool Transparent { get; set; } = false;
+    public override char Symbol => 'F';
+    public Coordinates LastChange { get; set; } = new Coordinates() { X = 0, Y = 0 };
     
-    public override char Symbol { get;} = 'F';
-
     public void MoveFlame(Game gameBoard)
     {
-        var rnd = new Random();
-        int randX = rnd.Next(2);
-        int randY = (randX != 1) ? rnd.Next(2) : 0;
+        var change = new FlameHelper().GetRandomDirection(LastChange);
         
-        int tempX = randX + Position.X;
-        int tempY = randY + Position.Y;
-    
+        int tempX = change.X + Position.X;
+        int tempY = change.Y + Position.Y;
+
         int lastX = Position.X;
         int lastY = Position.Y;
-    
-        if (MovementHelper.CheckAccessibility((tempX,tempY), gameBoard.FieldMatrix) && !(tempX == lastX && tempY == lastY))
+        
+        if (MovementHelper.CheckAccessibility((tempX,tempY), gameBoard))
         {
-            MovementHelper.CheckTaken((tempX,tempY), gameBoard);
+            MovementHelper.CheckTakenEnemy((tempX,tempY), gameBoard);
             Position.X = tempX;
             Position.Y = tempY;
-            FieldHelper.UpdateField(gameBoard.FieldMatrix, this, lastX, lastY);
+            FieldHelper.UpdateField(gameBoard, this, lastX, lastY);
         }
     }
 }

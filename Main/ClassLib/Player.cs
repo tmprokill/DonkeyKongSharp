@@ -13,12 +13,12 @@ public class Player : GameObject
         int lastX = player.Position.X;
         int lastY = player.Position.Y;
         
-        if (MovementHelper.CheckAccessibility((tempX,tempY), gameBoard.FieldMatrix) && MovementHelper.CheckTransparity((tempX, tempY), gameBoard.FieldMatrix))
+        if (MovementHelper.CheckAccessibility((tempX,tempY), gameBoard) && MovementHelper.CheckTransparity((tempX, tempY), gameBoard))
         {
-            MovementHelper.CheckTaken((tempX,tempY), gameBoard);
+            MovementHelper.CheckTakenPlayer((tempX,tempY), gameBoard);
             player.Position.X = tempX;
             player.Position.Y = tempY;
-            FieldHelper.UpdateField(gameBoard.FieldMatrix, player, lastX, lastY);
+            FieldHelper.UpdateField(gameBoard, player, lastX, lastY);
         }
     }
 }
