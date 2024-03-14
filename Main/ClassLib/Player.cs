@@ -2,9 +2,14 @@
 
 public class Player : GameObject
 {
+    public int Lives { get; set; } = 3;
+    
     public Coordinates Position { get; set; }
+    
     public override bool Transparent { get; set; } = false;
+    
     public override char Symbol { get;} = 'P';
+    
     public static void MovePlayer(Coordinates cord, Player player, Game gameBoard)
     {
         int tempX = cord.X + player.Position.X;

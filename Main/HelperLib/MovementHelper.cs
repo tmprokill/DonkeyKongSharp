@@ -1,4 +1,4 @@
-﻿namespace ClassLib;
+﻿namespace HelperLib;
 
 public class MovementHelper
 {
@@ -11,7 +11,6 @@ public class MovementHelper
 
         return false;
     }
-    
     public static bool CheckTransparity((int,int) values, Game gameBoard)
     {
         if (gameBoard[values.Item1][values.Item2].Init.Transparent != true)
@@ -21,7 +20,6 @@ public class MovementHelper
 
         return true;
     }
-    
     public static bool CheckBarrelDown(Game gameBoard, EnemyBarrel barrel)
     {
         if (barrel.Position.X + 1 == gameBoard.FieldMatrix.Length)
@@ -36,7 +34,6 @@ public class MovementHelper
 
         return false;
     }
-    
     public static void CheckTakenEnemy((int,int) values, Game gameBoard)
     {
         //End the game, проверка идёт по следующей позиции.
@@ -46,7 +43,6 @@ public class MovementHelper
             gameBoard.Status = -1;
         }
     }
-    
     public static void CheckTakenPlayer((int,int) values, Game gameBoard)
     {
         //End the game, проверка идёт по следующей позиции.
@@ -56,4 +52,5 @@ public class MovementHelper
             gameBoard.Status = -1;
         }
     }
+    
 }

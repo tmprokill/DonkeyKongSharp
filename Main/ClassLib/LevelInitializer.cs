@@ -14,7 +14,7 @@ public class LevelInitializer
         matrix.FieldMatrix = result;
     }
     
-    public static void InitializeLevel(Game gameboard)
+    public static void InitializeLevel(Game gameboard, Player player, EnemyBarrelSpawner barrelSpawn, EnemyFlameSpawner flameSpawn)
     {
         int maxLadders = 1;
         int ladderCounter = 0;
@@ -35,16 +35,18 @@ public class LevelInitializer
                    item = rnd.Next(25);
                    while (previous.Contains(item) || current.Contains(item))
                    {
-                       item = rnd.Next(25);
+                       item = rnd.Next(2,25);
                    }
                    current.Add(item); 
                 } 
+                
                 maxLadders += 1;
             }
             
             for (var j = 0; j < gameboard.Length; j++)
             {
                 gameboard[i][j] = new Cell();
+                
                 if (i != 0 && i % 4 == 0)
                 {
                     gameboard[i][j].Init = new Wall();
@@ -64,6 +66,10 @@ public class LevelInitializer
             }
             ladderCounter += 1;
         }
+        
+        gameboard[player.Position.X][player.Position.Y].Current = player;
+        gameboard[barrelSpawn.Position.X][barrelSpawn.Position.Y].Init = barrelSpawn;
+        gameboard[flameSpawn.Position.X][flameSpawn.Position.Y].Init = flameSpawn;
     }
 
     public static Coordinates SetFlameSpawn()

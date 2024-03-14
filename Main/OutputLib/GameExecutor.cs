@@ -1,6 +1,7 @@
-﻿using ClassLib;
-using static System.Console;
-namespace Main;
+﻿using static System.Console;
+using ClassLib;
+
+namespace OutputLib;
 
 public class GameExecutor
 {

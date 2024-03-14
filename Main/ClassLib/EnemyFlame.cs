@@ -7,8 +7,11 @@ public class EnemyFlame : GameObject
     public int Level { get; set; }
     
     public int HealPoints { get; set; }
+    
     public override bool Transparent { get; set; } = false;
+    
     public override char Symbol => 'F';
+    
     public Coordinates LastChange { get; set; } = new Coordinates() { X = 0, Y = 0 };
     
     public void MoveFlame(Game gameBoard)
