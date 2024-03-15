@@ -10,16 +10,13 @@ public class EnemyBarrel : GameObject
     
     public override char Symbol { get; } = '*';
 
-    //определить как я буду менять дайрекшн
     public void MoveBarrel(Game gameBoard)
     {
         //Удаление бочки
-        if (Position.X == gameBoard.Length - 1 && Position.Y == gameBoard[0].Length - 1) 
+        if (Position.Y == 0 || Position.Y == gameBoard[0].Length - 1) 
             FieldHelper.RemoveEntity(gameBoard, this);
-
-        int change = (Position.Y > 13) ? -1 : 1;
         
-        int tempY = change + Position.Y;
+        int tempY = Direction + Position.Y;
         
         int lastY = Position.Y;
     

@@ -1,8 +1,8 @@
 namespace ClassLib;
 
-public class Ladder : GameObject
+public class Door : GameObject
 {
     public override bool Transparent { get; set; } = true;
     
-    public override char Symbol { get; } = 'I';
+    public override char Symbol { get; } = '/';
 }

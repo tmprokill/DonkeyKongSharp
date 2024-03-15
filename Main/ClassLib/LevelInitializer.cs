@@ -14,10 +14,10 @@ public class LevelInitializer
         matrix.FieldMatrix = result;
     }
     
-    public static void InitializeLevel(Game gameboard, Player player, EnemyBarrelSpawner barrelSpawn, EnemyFlameSpawner flameSpawn)
+    public static void InitializeLevel(Game gameboard, Player player, EnemyFlameSpawner flameSpawn, List<EnemyBarrelSpawner> barrels)
     {
-        int maxLadders = 1;
-        int ladderCounter = 0;
+        int index = 0;
+        int maxDoors = 1;
         int item;
         var previous = new List<int>();
         var current = new List<int>();
@@ -25,22 +25,22 @@ public class LevelInitializer
         
         for (int i = 0; i < gameboard.Length; i++)
         {
-            if (i != 0 && ladderCounter % 4 == 0)
+            if (i != 0 && i % 4 == 0)
             { 
                 previous = new List<int>(current);
                 current.Clear();
                 
-                for (int wallCounter = 0; wallCounter < maxLadders; wallCounter++) 
+                for (int doorCounter = 0; doorCounter < maxDoors; doorCounter++) 
                 {
-                   item = rnd.Next(25);
+                   item = rnd.Next(2, 23);
                    while (previous.Contains(item) || current.Contains(item))
                    {
-                       item = rnd.Next(2,25);
+                       item = rnd.Next(2, 23);
                    }
                    current.Add(item); 
                 } 
                 
-                maxLadders += 1;
+                maxDoors += 1;
             }
             
             for (var j = 0; j < gameboard.Length; j++)
@@ -52,23 +52,23 @@ public class LevelInitializer
                     gameboard[i][j].Init = new Wall();
                     if (i != 24 && current.Contains(j))
                     {
-                        gameboard[i][j].Init.Transparent = true;
+                        gameboard[i][j].Init = new Door();
                     }
                 }
-                else if (current.Contains(j))
+                else if (i < 21 && ((j == 0 && i % 2 == 0) || (j == 24 && i % 2 != 0)))
                 {
-                    gameboard[i][j].Init = new Ladder(); // Создаем лестницы от верхней до нижней границы
+                    var barrel = new EnemyBarrelSpawner() { Position = new Coordinates() { X = i, Y = j } };
+                    gameboard[i][j].Init = barrel;
+                    barrels.Add(barrel);
                 }
                 else
                 {
                     gameboard[i][j].Init = new Empty();
                 }
             }
-            ladderCounter += 1;
         }
         
         gameboard[player.Position.X][player.Position.Y].Current = player;
-        gameboard[barrelSpawn.Position.X][barrelSpawn.Position.Y].Init = barrelSpawn;
         gameboard[flameSpawn.Position.X][flameSpawn.Position.Y].Init = flameSpawn;
     }
 
@@ -76,9 +76,5 @@ public class LevelInitializer
     {
         return new Coordinates() { X = 8, Y = new Random().Next(25) };
     }
-
-    public static Coordinates SetBarrelSpawn()
-    {
-        return new Coordinates() { X = 3, Y = new Random().Next(25) };
-    }
+    
 }

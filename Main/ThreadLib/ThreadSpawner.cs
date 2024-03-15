@@ -15,11 +15,14 @@ public class ThreadSpawner
         }
     }
 
-    public static void BarrelSpawner(Game game, ConcurrentBag<EnemyBarrel> list, Coordinates spawn)
+    public static void BarrelSpawner(Game game, ConcurrentBag<EnemyBarrel> list, List<EnemyBarrelSpawner> spawners)
     {
         while (game.Status == 0)
         {
-            list.Add(new EnemyBarrel { Position = new Coordinates(spawn) });
+            foreach (var item in spawners)
+            {
+                list.Add(new EnemyBarrel { Position = new Coordinates(item.Position), Direction = item.Position.Y < 13 ? 1 : -1});
+            }
             Thread.Sleep(10000);
         }
     }
