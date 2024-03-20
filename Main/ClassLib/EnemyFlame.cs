@@ -12,9 +12,11 @@ public class EnemyFlame : GameObject
     
     public override char Symbol => 'F';
     
+    public override ConsoleColor Color { get; set; } = ConsoleColor.Red;
+    
     public Coordinates LastChange { get; set; } = new Coordinates() { X = 0, Y = 0 };
     
-    public void MoveFlame(Game gameBoard)
+    public void MoveFlame(Game gameBoard, Player player)
     {
         var change = new FlameHelper().GetRandomDirection(LastChange);
         
@@ -26,7 +28,11 @@ public class EnemyFlame : GameObject
         
         if (MovementHelper.CheckAccessibility((tempX,tempY), gameBoard))
         {
-            MovementHelper.CheckTakenEnemy((tempX,tempY), gameBoard);
+            if (MovementHelper.CheckTakenEnemy((tempX, tempY), gameBoard, player))
+            {
+                Player.MovePlayerSpawn(gameBoard, player);
+            }
+            
             Position.X = tempX;
             Position.Y = tempY;
             FieldHelper.UpdateField(gameBoard, this, lastX, lastY);

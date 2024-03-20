@@ -9,8 +9,10 @@ public class EnemyBarrel : GameObject
     public override bool Transparent { get; set; } = false;
     
     public override char Symbol { get; } = '*';
+    
+    public override ConsoleColor Color { get; set; } = ConsoleColor.Red;
 
-    public void MoveBarrel(Game gameBoard)
+    public void MoveBarrel(Game gameBoard, Player player)
     {
         //Удаление бочки
         if (Position.Y == 0 || Position.Y == gameBoard[0].Length - 1) 
@@ -22,7 +24,11 @@ public class EnemyBarrel : GameObject
     
         if (MovementHelper.CheckAccessibility((Position.X,tempY), gameBoard))
         {
-            MovementHelper.CheckTakenEnemy((Position.X,tempY), gameBoard);
+            if (MovementHelper.CheckTakenEnemy((Position.X, tempY), gameBoard, player))
+            {
+                Player.MovePlayerSpawn(gameBoard, player);
+            }
+            
             Position.Y = tempY;
             FieldHelper.UpdateField(gameBoard, this, Position.X, lastY);
         }

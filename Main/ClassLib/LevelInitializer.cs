@@ -14,8 +14,17 @@ public class LevelInitializer
         matrix.FieldMatrix = result;
     }
     
-    public static void InitializeLevel(Game gameboard, Player player, EnemyFlameSpawner flameSpawn, List<EnemyBarrelSpawner> barrels)
+    public static void InitializeLevel(Game gameboard, Player player, 
+        EnemyFlameSpawner flameSpawn, 
+        List<EnemyBarrelSpawner> barrels, 
+        CupCake boost,
+        ExpBooster exp)
     {
+        SetFlameSpawn(flameSpawn);
+        SetPlayerSpawn(player);
+        SetBoostSpawn(boost);
+        SetExpSpawn(exp);
+
         int index = 0;
         int maxDoors = 1;
         int item;
@@ -25,7 +34,7 @@ public class LevelInitializer
         
         for (int i = 0; i < gameboard.Length; i++)
         {
-            if (i != 0 && i % 4 == 0)
+            if (i % 4 == 0)
             { 
                 previous = new List<int>(current);
                 current.Clear();
@@ -38,16 +47,19 @@ public class LevelInitializer
                        item = rnd.Next(2, 23);
                    }
                    current.Add(item); 
-                } 
-                
-                maxDoors += 1;
+                }
+
+                if (i != 0)
+                {
+                   maxDoors += 1; 
+                }
             }
             
             for (var j = 0; j < gameboard.Length; j++)
             {
                 gameboard[i][j] = new Cell();
                 
-                if (i != 0 && i % 4 == 0)
+                if (i % 4 == 0)
                 {
                     gameboard[i][j].Init = new Wall();
                     if (i != 24 && current.Contains(j))
@@ -67,14 +79,54 @@ public class LevelInitializer
                 }
             }
         }
-        
+
+        gameboard[boost.Position.X][boost.Position.Y].Init = boost;
+        gameboard[exp.Position.X][exp.Position.Y].Init = exp;
         gameboard[player.Position.X][player.Position.Y].Current = player;
         gameboard[flameSpawn.Position.X][flameSpawn.Position.Y].Init = flameSpawn;
     }
 
-    public static Coordinates SetFlameSpawn()
+    private static void SetPlayerSpawn(Player player)
     {
-        return new Coordinates() { X = 8, Y = new Random().Next(25) };
+        var xList = new List<int> { 21,22,23 };
+        var rndXIndex = new Random().Next(0, xList.Count);
+        
+        var temp = new Coordinates() { X = xList[rndXIndex], Y = new Random().Next(3, 22) };
+        
+        player.Spawn = temp;
+        player.Position = new Coordinates(temp);
     }
     
+    private static void SetFlameSpawn(EnemyFlameSpawner flame)
+    {
+        var xList = new List<int> { 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
+        var rndXIndex = new Random().Next(0, xList.Count);
+        
+        flame.Position = new Coordinates() { X = xList[rndXIndex], Y = new Random().Next(3, 22) };
+    }
+    
+    private static void SetBoostSpawn(CupCake boost)
+    {
+        var xList = new List<int> { 10, 11, 14, 17, 18, 19 };
+        var rndXIndex = new Random().Next(0, xList.Count);
+        
+        boost.Position = new  Coordinates() { X = xList[rndXIndex], Y = new Random().Next(1, 24) };
+    }
+    
+    private static void SetExpSpawn(ExpBooster boost)
+    {
+        var xList = new List<int> { 2, 3, 7, 13, 15, 18, 19 };
+        var rndXIndex = new Random().Next(0, xList.Count);
+        
+        boost.Position = new  Coordinates() { X = xList[rndXIndex], Y = new Random().Next(1, 24) };
+    }
+
+    public static void ClearAndGenerate(ObjectCollection collection)
+    {
+        collection.BarrelSpawners.Clear();
+        collection.FlameEnemies.Clear();
+        InitializeLevel(collection.Game, collection.Player, 
+            collection.FlameSpawner, collection.BarrelSpawners, 
+            collection.Boost, collection.Exp);
+    }
 }

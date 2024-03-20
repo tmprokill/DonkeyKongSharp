@@ -22,38 +22,65 @@ public class MovementHelper
         return true;
     }
     
-    public static bool CheckBarrelDown(Game gameBoard, EnemyBarrel barrel)
-    {
-        if (barrel.Position.X + 1 == gameBoard.FieldMatrix.Length)
-        {
-            return false;
-        }
-
-        if (gameBoard.FieldMatrix[barrel.Position.X + 1][barrel.Position.Y].Init.Transparent)
-        {
-            return true;
-        }
-
-        return false;
-    }
-    
-    public static void CheckTakenEnemy((int,int) values, Game gameBoard)
+    public static bool CheckTakenEnemy((int,int) values, Game gameBoard, Player player)
     {
         //End the game, проверка идёт по следующей позиции.
         var item = gameBoard.FieldMatrix[values.Item1][values.Item2].Current;
         if (item != null && item.Symbol == 'P')
         {
-            gameBoard.Status = -1;
+            player.Lives -= 1;
+            if (player.Lives == 0)
+            {
+                gameBoard.Status = -1;
+            }
+
+            return true;
         }
+        return false;
     }
     
-    public static void CheckTakenPlayer((int,int) values, Game gameBoard)
+    public static bool CheckTakenPlayer((int,int) values, Game gameBoard, Player player)
     {
         //End the game, проверка идёт по следующей позиции.
         var item = gameBoard.FieldMatrix[values.Item1][values.Item2].Current;
         if (item != null && item.Symbol is '*' or 'F')
         {
-            gameBoard.Status = -1;
+            player.Lives -= 1;
+            if (player.Lives == 0)
+            {
+                gameBoard.Status = -1;
+            }
+
+            return true;
         }
+
+        return false;
+    }
+
+    public static void CheckBoost((int, int) values, Game gameBoard)
+    {
+        var item = gameBoard.FieldMatrix[values.Item1][values.Item2].Init;
+        
+        if (item != null && item.Symbol is 'C')
+        {
+            FreezeBarrels(gameBoard);
+            FreezeFlames(gameBoard);
+            gameBoard.FieldMatrix[values.Item1][values.Item2].Init = new Empty();
+        }
+        else if (item != null && item.Symbol is 'E')
+        {
+            gameBoard.Score += 1000;
+            gameBoard.FieldMatrix[values.Item1][values.Item2].Init = new Empty();
+        }
+    }
+    
+    private static void FreezeFlames(Game game)
+    {
+        game.FlameRunning = false;
+    }
+    
+    private static void FreezeBarrels(Game game)
+    {
+        game.BarrelRunning = false;
     }
 }

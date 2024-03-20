@@ -7,4 +7,6 @@ public class EnemyFlameSpawner : GameObject
     public override bool Transparent { get; set; } = false;
     
     public override char Symbol { get; } = 'S';
+
+    public override ConsoleColor Color { get; set; } = ConsoleColor.Red;
 }

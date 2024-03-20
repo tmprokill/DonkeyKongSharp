@@ -8,8 +8,10 @@
 
     <ItemGroup>
       <ProjectReference Include="..\ClassLib\ClassLib.csproj" />
-      <ProjectReference Include="..\FileWorkLib\FileWorkLib.csproj" />
-      <ProjectReference Include="..\OutputLib\OutputLib.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="NAudio" Version="2.2.1" />
     </ItemGroup>
 
 </Project>

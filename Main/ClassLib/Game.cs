@@ -3,6 +3,14 @@
 public class Game
 {
     public int Status { get; set; } = 0;
+
+    public int Difficulty { get; set; }
+    
+    public int Score { get; set; }
+    
+    public bool FlameRunning { get; set; } = true;
+
+    public bool BarrelRunning { get; set; } = true;
     
     public Cell[][] FieldMatrix { get; set; }
     
