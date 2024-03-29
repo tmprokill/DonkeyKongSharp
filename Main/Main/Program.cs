@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using System.Reflection;
 using ClassLib;
 using ThreadLib;
 
@@ -9,6 +10,7 @@ internal class Program
     internal static void Main(string[] args)
     {
         //initialization
+        bool ini = false;
         var collection = GenerateObjectCollection();
             
         var keyReaderThread = new Thread(() => ThreadSpawner.KeyReader(collection.Game, collection.Player));
@@ -17,17 +19,65 @@ internal class Program
         var barrelSpawnerThread = new Thread(() => ThreadSpawner.BarrelSpawner(collection.Game, collection.BarrelEnemies, collection.BarrelSpawners));
         var barrelThread = new Thread(() => ThreadSpawner.Barrel(collection.Game, collection.BarrelEnemies, collection.Player));
         var gamePrinterThread = new Thread(() => ThreadSpawner.PrintField(collection.Game, collection.Player));
-        var nextLevel = new Thread(() => ThreadSpawner.LevelListener(collection));
-        var musicPlayer = new Thread(() => ThreadSpawner.MusicPlayer(collection.Game));
+        var nextLevelThread = new Thread(() => ThreadSpawner.LevelListener(collection));
+        var musicPlayerThread = new Thread(() => ThreadSpawner.MusicPlayer(collection.Game));
+
+        var threadList = new List<Thread>()
+        {
+            keyReaderThread, flameThread, 
+            flameSpawnerThread, barrelSpawnerThread, 
+            barrelThread,gamePrinterThread, 
+            nextLevelThread, musicPlayerThread
+        };
         
-        gamePrinterThread.Start();
-        keyReaderThread.Start();
-        flameSpawnerThread.Start();
-        barrelSpawnerThread.Start();
-        flameThread.Start();
-        barrelThread.Start();
-        nextLevel.Start();
-        musicPlayer.Start();
+        while (true)
+        {
+            
+            Console.CursorVisible = false;
+            
+            Console.WriteLine("Welcome to the DonkeyKong Game!");
+            
+            
+            Console.WriteLine("Press S to start!");
+            
+            
+            Console.WriteLine("Press L to close!");
+            
+            //Console.Write("\x1b[?25l");
+            var key = Console.ReadKey();
+            if (key.Key == ConsoleKey.L) 
+            {
+                foreach (var item in threadList)
+                {
+                    item.Interrupt();
+                }
+                
+                break;
+            }
+            if (key.Key == ConsoleKey.S)
+            {
+                if (!ini)
+                {
+                    foreach (var item in threadList)
+                    {
+                        item.Start();
+                    }
+                    
+                    ini = true;
+                }
+                
+                if (collection.Game.Status != 0)
+                {
+                    Clear(collection);
+                }
+                
+                while (collection.Game.Status == 0)
+                {
+                    Thread.Sleep(1000);
+                }
+            }
+        }
+        
     }
 
     internal static ObjectCollection GenerateObjectCollection()
@@ -61,5 +111,18 @@ internal class Program
         result.Exp = exp;
         
         return result;
+    }
+
+    private static void Clear(ObjectCollection collection)
+    {
+        Console.Clear();
+        
+        collection.Game.Status = 0;
+        collection.Game.Difficulty = 0;
+        collection.Game.Score = 0;
+        collection.Player.Lives = 3;
+        collection.BarrelEnemies.Clear();
+        
+        LevelInitializer.ClearAndGenerate(collection);
     }
 }

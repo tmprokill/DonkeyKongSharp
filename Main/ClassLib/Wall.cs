@@ -6,5 +6,5 @@ public class Wall : GameObject
     
     public override char Symbol { get; } = '#';
 
-    public override ConsoleColor Color { get; set; } = ConsoleColor.Black;
+    public override ConsoleColor Color { get; set; } = ConsoleColor.Gray;
 }

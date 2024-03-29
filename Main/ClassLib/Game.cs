@@ -5,8 +5,8 @@ public class Game
     public int Status { get; set; } = 0;
 
     public int Difficulty { get; set; }
-    
-    public int Score { get; set; }
+
+    public int Score { get; set; } = 0;
     
     public bool FlameRunning { get; set; } = true;
 

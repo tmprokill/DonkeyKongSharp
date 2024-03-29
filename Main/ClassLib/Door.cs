@@ -6,5 +6,5 @@ public class Door : GameObject
     
     public override char Symbol { get; } = '/';
 
-    public override ConsoleColor Color { get; set; } = ConsoleColor.White;
+    public override ConsoleColor Color { get; set; } = ConsoleColor.DarkBlue;
 }

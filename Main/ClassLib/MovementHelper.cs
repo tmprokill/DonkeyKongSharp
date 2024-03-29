@@ -29,6 +29,7 @@ public class MovementHelper
         if (item != null && item.Symbol == 'P')
         {
             player.Lives -= 1;
+            
             if (player.Lives == 0)
             {
                 gameBoard.Status = -1;

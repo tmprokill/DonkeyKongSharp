@@ -2,7 +2,7 @@
 
 public class FlameHelper
 {
-    private Dictionary<int, Coordinates> _directions = new Dictionary<int, Coordinates>()
+    private readonly Dictionary<int, Coordinates> _directions = new Dictionary<int, Coordinates>()
     {
         {0, new Coordinates(){X = -1, Y = 0}},
         {1, new Coordinates(){X = 1, Y = 0}},

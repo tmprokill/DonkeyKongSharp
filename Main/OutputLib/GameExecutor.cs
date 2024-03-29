@@ -16,8 +16,6 @@ public class GameExecutor
                 //без двойной проверки наворачивается.
                 ForegroundColor = f.Current != null ? f.Current.Color : f.Init.Color;
                 
-                //Escape console 
-                Write("\x1b[?25l");
                 Write(f.Current != null ? $" {f.Current.Symbol} " : $" {f.Init.Symbol} ");
                 
                 ForegroundColor = default;
