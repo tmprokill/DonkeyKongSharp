@@ -73,6 +73,8 @@ public class MovementHelper
             gameBoard.Score += 1000;
             gameBoard.FieldMatrix[values.Item1][values.Item2].Init = new Empty();
         }
+        
+        gameBoard.ItemsCollected += 1;
     }
     
     private static void FreezeFlames(Game game)

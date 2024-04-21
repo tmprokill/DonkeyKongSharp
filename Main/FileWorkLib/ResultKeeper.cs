@@ -36,7 +36,7 @@ public class ResultKeeper
         return -1;
     }
 
-    public static void WriteScore(int score)
+    public static void WriteScore(int score, string? playerName)
     {
         var temp = Path.GetTempPath();
         var name = "Scores.txt";
@@ -51,7 +51,7 @@ public class ResultKeeper
         {
             string existingContent = File.ReadAllText(path);
 
-            string updatedContent = score + Environment.NewLine + existingContent;
+            string updatedContent = $"{playerName}: {score}" + Environment.NewLine + existingContent;
 
             File.WriteAllText(path, updatedContent);
         }
@@ -64,6 +64,7 @@ public class ResultKeeper
     public static int MatchAndParse(string line)
     {
         int result = 0;
+        string value = line[line.IndexOf(':')..];
         var pattern = new Regex("^[0-9]+$");
         
         if (pattern.IsMatch(line))

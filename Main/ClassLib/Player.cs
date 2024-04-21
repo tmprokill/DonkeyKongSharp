@@ -2,6 +2,7 @@
 
 public class Player : GameObject
 {
+    public string Name { get; set; }
     public int Lives { get; set; } = 3;
     
     public Coordinates Spawn { get; set; }    

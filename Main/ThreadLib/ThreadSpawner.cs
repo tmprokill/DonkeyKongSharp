@@ -151,7 +151,7 @@ public class ThreadSpawner
                 Thread.Sleep(1000/60);
             }
             
-            GameFinisher(game);
+            GameFinisher(game, player.Name);
             while (game.Status != 0)
             {
                 Thread.Sleep(1000);
@@ -167,6 +167,7 @@ public class ThreadSpawner
             while (game.Status == 0)
             {
                 var keyInfo = Console.ReadKey();
+                game.StepsAmount += 1;
                 keyHandler.HandleKeyPress(keyInfo.Key, player, game);
             }
             
@@ -204,6 +205,7 @@ public class ThreadSpawner
                         ? collection.Game.Difficulty + 1
                         : collection.Game.Difficulty;
                     collection.Game.Score += 10000;
+                    collection.Game.LevelsPassed += 1;
                     LevelInitializer.ClearAndGenerate(collection);
                 }
             }
@@ -216,22 +218,33 @@ public class ThreadSpawner
         
     }
     
-    private static void GameFinisher(Game game)
+    private static void GameFinisher(Game game, string name)
     {
         var highScore = ResultKeeper.GetScore();
         if (game.Status == -1)
         {
             if (game.Score > highScore)
             {
-                ResultKeeper.WriteScore(game.Score);
+                ResultKeeper.WriteScore(game.Score, name);
                 Console.WriteLine("You've beaten the record!");
             }
             else
             {
                 Console.WriteLine("Nice Try, Play Again!");
             }
+
+            var model = new StatsModel()
+            {
+                LevelsPassed = game.LevelsPassed,
+                MovesCount = game.StepsAmount,
+                PrizesCollected = game.ItemsCollected,
+                Name = name,
+                LosesCount = 1
+            };
             
-            Console.WriteLine($"GameScore: {game.Score}");
+            StatsSaver.UpdateStats(model);
+            
+            Console.WriteLine($"{name}'s gameScore: {game.Score}");
         }
         
     }

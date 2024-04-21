@@ -10,7 +10,7 @@ public class MusicPlayer
         var path = Path.GetTempPath();
         var name = "Song.wav";
         path = Path.Combine(path, name);
-
+        
         try
         {
             using var audioFile = new Mp3FileReader(path);

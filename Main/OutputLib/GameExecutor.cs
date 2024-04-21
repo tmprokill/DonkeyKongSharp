@@ -24,7 +24,7 @@ public class GameExecutor
             WriteLine();
         }
         
-        WriteLine($"Player Lives: {player.Lives}");
+        WriteLine($"{player.Name} Lives: {player.Lives}");
         WriteLine($"Score: {gameBoard.Score}");
     }
 }

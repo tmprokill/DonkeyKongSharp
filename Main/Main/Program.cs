@@ -1,6 +1,7 @@
 ﻿using System.Collections.Concurrent;
 using System.Reflection;
 using ClassLib;
+using FileWorkLib;
 using ThreadLib;
 
 namespace Main;
@@ -12,7 +13,10 @@ internal class Program
         //initialization
         bool ini = false;
         var collection = GenerateObjectCollection();
-            
+        
+        Console.WriteLine("Enter your name!");
+        collection.Player.Name = Console.ReadLine() ?? "default";
+        
         var keyReaderThread = new Thread(() => ThreadSpawner.KeyReader(collection.Game, collection.Player));
         var flameThread = new Thread(() => ThreadSpawner.Flame(collection.Game, collection.FlameEnemies, collection.Player));
         var flameSpawnerThread = new Thread(() => ThreadSpawner.FlameSpawner(collection.Game, collection.FlameEnemies, collection.FlameSpawner));
@@ -40,10 +44,10 @@ internal class Program
             
             Console.WriteLine("Press S to start!");
             
+            Console.WriteLine("Press I to get your stats!");
             
             Console.WriteLine("Press L to close!");
             
-            //Console.Write("\x1b[?25l");
             var key = Console.ReadKey();
             if (key.Key == ConsoleKey.L) 
             {
@@ -54,6 +58,12 @@ internal class Program
                 
                 break;
             }
+            
+            if (key.Key == ConsoleKey.I) 
+            {
+                StatsSaver.GetResults(collection.Player.Name);
+            }
+            
             if (key.Key == ConsoleKey.S)
             {
                 if (!ini)

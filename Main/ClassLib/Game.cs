@@ -8,6 +8,12 @@ public class Game
 
     public int Score { get; set; } = 0;
     
+    public int StepsAmount { get; set; }
+
+    public int LevelsPassed { get; set; }
+    
+    public int ItemsCollected { get; set; }
+    
     public bool FlameRunning { get; set; } = true;
 
     public bool BarrelRunning { get; set; } = true;
