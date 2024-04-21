@@ -11,4 +11,6 @@ public class StatsModel
     public int LevelsPassed { get; set; }
 
     public int LosesCount { get; set; }
+    
+    public int HighScore { get; set; }
 }

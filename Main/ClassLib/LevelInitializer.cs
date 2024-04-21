@@ -19,14 +19,15 @@ public class LevelInitializer
         List<Cannon> barrels, 
         CupCake boost,
         ExpBooster exp,
-        HealthBooster health)
+        HealthBooster health,
+        Key key)
     {
         SetFlameSpawn(flameSpawn);
         SetPlayerSpawn(player);
         SetBoostSpawn(boost);
         SetExpSpawn(exp);
         SetHealthSpawn(health);
-        
+        SetKeySpawn(key); 
 
         int index = 0;
         int maxDoors = 1;
@@ -68,6 +69,13 @@ public class LevelInitializer
                     if (i != 24 && current.Contains(j))
                     {
                         gameboard[i][j].Init = new Door();
+                        if (i == 0)
+                        {
+                            gameboard[i][j].Init.Transparent = false;
+                            key.Opens = new Coordinates() { X = i, Y = j };
+                        }
+                        
+
                     }
                 }
                 else if (i < 21 && ((j == 0 && i % 2 == 0) || (j == 24 && i % 2 != 0)))
@@ -91,6 +99,7 @@ public class LevelInitializer
         }
         gameboard[player.Position.X][player.Position.Y].Current = player;
         gameboard[flameSpawn.Position.X][flameSpawn.Position.Y].Init = flameSpawn;
+        gameboard[key.Position.X][key.Position.Y].Init = key;
     }
 
     private static void SetPlayerSpawn(Player player)
@@ -136,12 +145,20 @@ public class LevelInitializer
         boost.Position = new  Coordinates() { X = xList[rndXIndex], Y = new Random().Next(1, 24) };
     }
 
+    private static void SetKeySpawn(Key key)
+    {
+        var xList = new List<int> { 1, 2, 3, 5, 9, 11, 22,};
+        var rndXIndex = new Random().Next(0, xList.Count);
+        
+        key.Position = new  Coordinates() { X = xList[rndXIndex], Y = new Random().Next(1, 24) };
+    }
+
     public static void ClearAndGenerate(ObjectCollection collection)
     {
         collection.BarrelSpawners.Clear();
         collection.FlameEnemies.Clear();
         InitializeLevel(collection.Game, collection.Player, 
             collection.FlameSpawner, collection.BarrelSpawners, 
-            collection.Boost, collection.Exp, collection.Health);
+            collection.Boost, collection.Exp, collection.Health, collection.Key);
     }
 }

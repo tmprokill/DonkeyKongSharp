@@ -40,11 +40,12 @@ public static class StatsSaver
             }
         }
         
-        Console.WriteLine(result.Name);
-        Console.WriteLine(result.LevelsPassed);
-        Console.WriteLine(result.PrizesCollected);
-        Console.WriteLine(result.MovesCount);
-        Console.WriteLine(result.LosesCount);
+        Console.WriteLine($"{result.Name}'s Results:");
+        Console.WriteLine($"High score is: {result.HighScore}");
+        Console.WriteLine($"{result.LevelsPassed} Levels passed");
+        Console.WriteLine($"{result.PrizesCollected} Prizes Collected");
+        Console.WriteLine($"{result.MovesCount}");
+        Console.WriteLine($"{result.LosesCount}");
     }
 
     public static void UpdateStats(StatsModel model)
@@ -79,6 +80,7 @@ public static class StatsSaver
                 item.LosesCount += model.LosesCount;
                 item.MovesCount += model.MovesCount;
                 item.PrizesCollected += model.PrizesCollected;
+                item.HighScore = item.HighScore > model.HighScore ? item.HighScore : model.HighScore;
                 models[key] = JsonSerializer.Serialize(item);
             }
             else

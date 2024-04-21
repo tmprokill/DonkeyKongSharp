@@ -64,12 +64,12 @@ public class ResultKeeper
     public static int MatchAndParse(string line)
     {
         int result = 0;
-        string value = line[line.IndexOf(':')..];
+        string value = line[(line.IndexOf(':') + 1)..];
         var pattern = new Regex("^[0-9]+$");
         
-        if (pattern.IsMatch(line))
+        if (pattern.IsMatch(value))
         {
-            int.TryParse(line, out result);
+            int.TryParse(value, out result);
         }
 
         return result;

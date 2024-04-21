@@ -30,7 +30,7 @@ internal class Program
         {
             keyReaderThread, flameThread, 
             flameSpawnerThread, barrelSpawnerThread, 
-            barrelThread,gamePrinterThread, 
+            barrelThread, gamePrinterThread, 
             nextLevelThread, musicPlayerThread
         };
         
@@ -53,21 +53,32 @@ internal class Program
             
             if (key.Key == ConsoleKey.L) 
             {
+                Console.WriteLine(TemplateGetter.GetExit());
                 foreach (var item in threadList)
                 {
                     item.Interrupt();
                 }
+                
+                Thread.Sleep(1000);
+                Console.Clear();
                 
                 break;
             }
             
             if (key.Key == ConsoleKey.I) 
             {
+                Console.WriteLine(TemplateGetter.GetOptions());
+                Thread.Sleep(2000);
+                Console.Clear();
                 StatsSaver.GetResults(collection.Player.Name);
             }
             
             if (key.Key == ConsoleKey.S)
             {
+                Console.WriteLine(TemplateGetter.GetLoading());
+                Thread.Sleep(2000);
+                Console.Clear();
+                
                 if (!ini)
                 {
                     foreach (var item in threadList)
@@ -104,6 +115,8 @@ internal class Program
         var exp = new ExpBooster();
 
         var health = new HealthBooster();
+
+        var key = new Key();
         
         var flameEnemies = new ConcurrentBag<Flame>();
         var barrelEnemies = new ConcurrentBag<Сannonball>();
@@ -113,7 +126,7 @@ internal class Program
         
         
         LevelInitializer.GenerateMatrixTemplate(25, game);
-        LevelInitializer.InitializeLevel(game, player, flameSpawner, barrelSpawnerList, boost, exp, health);
+        LevelInitializer.InitializeLevel(game, player, flameSpawner, barrelSpawnerList, boost, exp, health, key);
 
         result.Game = game;
         result.Player = player;
@@ -124,6 +137,7 @@ internal class Program
         result.Boost = boost;
         result.Exp = exp;
         result.Health = health;
+        result.Key = key;
         
         return result;
     }

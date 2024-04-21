@@ -226,16 +226,17 @@ public class ThreadSpawner
             if (game.Score > highScore)
             {
                 ResultKeeper.WriteScore(game.Score, name);
-                Console.WriteLine("You've beaten the record!");
+                Console.WriteLine(TemplateGetter.GetWin());
             }
             else
             {
-                Console.WriteLine("Nice Try, Play Again!");
+                Console.WriteLine(TemplateGetter.GetLose());
             }
 
             var model = new StatsModel()
             {
                 LevelsPassed = game.LevelsPassed,
+                HighScore = game.Score,
                 MovesCount = game.StepsAmount,
                 PrizesCollected = game.ItemsCollected,
                 Name = name,

@@ -21,4 +21,6 @@ public class ObjectCollection
     public ExpBooster Exp { get; set; }
     
     public HealthBooster Health { get; set; }
+    
+    public Key Key { get; set; }
 }
