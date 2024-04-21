@@ -58,7 +58,7 @@ public class MovementHelper
         return false;
     }
 
-    public static void CheckBoost((int, int) values, Game gameBoard)
+    public static void CheckBoost((int, int) values, Game gameBoard, Player player)
     {
         var item = gameBoard.FieldMatrix[values.Item1][values.Item2].Init;
         
@@ -67,14 +67,21 @@ public class MovementHelper
             FreezeBarrels(gameBoard);
             FreezeFlames(gameBoard);
             gameBoard.FieldMatrix[values.Item1][values.Item2].Init = new Empty();
+            gameBoard.ItemsCollected += 1;
         }
         else if (item != null && item.Symbol is 'E')
         {
             gameBoard.Score += 1000;
             gameBoard.FieldMatrix[values.Item1][values.Item2].Init = new Empty();
+            gameBoard.ItemsCollected += 1;
+        }
+        else if (item != null && item.Symbol is 'H')
+        {
+            player.Lives += 1;
+            gameBoard.FieldMatrix[values.Item1][values.Item2].Init = new Empty();
+            gameBoard.ItemsCollected += 1;
         }
         
-        gameBoard.ItemsCollected += 1;
     }
     
     private static void FreezeFlames(Game game)

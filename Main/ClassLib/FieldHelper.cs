@@ -10,19 +10,19 @@ public class FieldHelper
     }
     
     //Flame
-    public static void UpdateField(Game gameBoard, EnemyFlame enemy, int lastX, int lastY)
+    public static void UpdateField(Game gameBoard, Flame enemy, int lastX, int lastY)
     {
         gameBoard[enemy.Position.X][enemy.Position.Y].Current = enemy;
         gameBoard[lastX][lastY].Current = null;
     }
     //Barrel
-    public static void UpdateField(Game gameBoard, EnemyBarrel enemy, int lastX, int lastY)
+    public static void UpdateField(Game gameBoard, Сannonball enemy, int lastX, int lastY)
     {
         gameBoard[enemy.Position.X][enemy.Position.Y].Current = enemy;
         gameBoard[lastX][lastY].Current = null;
     }
 
-    public static void RemoveEntity(Game gameBoard, EnemyBarrel enemy)
+    public static void RemoveEntity(Game gameBoard, Сannonball enemy)
     {
         gameBoard[enemy.Position.X][enemy.Position.Y].Current = null;
     }

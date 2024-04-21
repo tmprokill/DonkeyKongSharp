@@ -20,8 +20,8 @@ internal class Program
         var keyReaderThread = new Thread(() => ThreadSpawner.KeyReader(collection.Game, collection.Player));
         var flameThread = new Thread(() => ThreadSpawner.Flame(collection.Game, collection.FlameEnemies, collection.Player));
         var flameSpawnerThread = new Thread(() => ThreadSpawner.FlameSpawner(collection.Game, collection.FlameEnemies, collection.FlameSpawner));
-        var barrelSpawnerThread = new Thread(() => ThreadSpawner.BarrelSpawner(collection.Game, collection.BarrelEnemies, collection.BarrelSpawners));
-        var barrelThread = new Thread(() => ThreadSpawner.Barrel(collection.Game, collection.BarrelEnemies, collection.Player));
+        var barrelSpawnerThread = new Thread(() => ThreadSpawner.CannonSpawner(collection.Game, collection.BarrelEnemies, collection.BarrelSpawners));
+        var barrelThread = new Thread(() => ThreadSpawner.CannonBall(collection.Game, collection.BarrelEnemies, collection.Player));
         var gamePrinterThread = new Thread(() => ThreadSpawner.PrintField(collection.Game, collection.Player));
         var nextLevelThread = new Thread(() => ThreadSpawner.LevelListener(collection));
         var musicPlayerThread = new Thread(() => ThreadSpawner.MusicPlayer(collection.Game));
@@ -49,6 +49,8 @@ internal class Program
             Console.WriteLine("Press L to close!");
             
             var key = Console.ReadKey();
+            Console.WriteLine();
+            
             if (key.Key == ConsoleKey.L) 
             {
                 foreach (var item in threadList)
@@ -100,16 +102,18 @@ internal class Program
         var boost = new CupCake();
 
         var exp = new ExpBooster();
-        
-        var flameEnemies = new ConcurrentBag<EnemyFlame>();
-        var barrelEnemies = new ConcurrentBag<EnemyBarrel>();
 
-        var flameSpawner = new EnemyFlameSpawner();
-        var barrelSpawnerList = new List<EnemyBarrelSpawner>();
+        var health = new HealthBooster();
+        
+        var flameEnemies = new ConcurrentBag<Flame>();
+        var barrelEnemies = new ConcurrentBag<Сannonball>();
+
+        var flameSpawner = new BoneFire();
+        var barrelSpawnerList = new List<Cannon>();
         
         
         LevelInitializer.GenerateMatrixTemplate(25, game);
-        LevelInitializer.InitializeLevel(game, player, flameSpawner, barrelSpawnerList, boost, exp);
+        LevelInitializer.InitializeLevel(game, player, flameSpawner, barrelSpawnerList, boost, exp, health);
 
         result.Game = game;
         result.Player = player;
@@ -119,6 +123,7 @@ internal class Program
         result.BarrelSpawners = barrelSpawnerList;
         result.Boost = boost;
         result.Exp = exp;
+        result.Health = health;
         
         return result;
     }

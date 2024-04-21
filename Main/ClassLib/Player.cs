@@ -26,7 +26,7 @@ public class Player : GameObject
         if (MovementHelper.CheckAccessibility((tempX,tempY), gameBoard) 
             && MovementHelper.CheckTransparity((tempX, tempY), gameBoard))
         {
-            MovementHelper.CheckBoost((tempX,tempY), gameBoard);
+            MovementHelper.CheckBoost((tempX,tempY), gameBoard, player);
             if (MovementHelper.CheckTakenPlayer((tempX, tempY), gameBoard, player))
             {
                 player.Position = new Coordinates(player.Spawn);

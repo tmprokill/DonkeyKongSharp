@@ -1,6 +1,6 @@
 ﻿namespace ClassLib;
 
-public class EnemyFlameSpawner : GameObject
+public class Cannon : GameObject
 {
     public Coordinates Position { get; set; }
     
@@ -8,5 +8,5 @@ public class EnemyFlameSpawner : GameObject
     
     public override char Symbol { get; } = 'S';
 
-    public override ConsoleColor Color { get; set; } = ConsoleColor.Red;
+    public override ConsoleColor Color { get; set; } = ConsoleColor.DarkRed;
 }

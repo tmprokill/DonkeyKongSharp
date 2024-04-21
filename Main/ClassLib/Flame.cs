@@ -1,6 +1,6 @@
 ﻿namespace ClassLib;
 
-public class EnemyFlame : GameObject
+public class Flame : GameObject
 {
     public Coordinates Position { get; set; } = new Coordinates() { X = 1, Y = 1 };
     
@@ -12,7 +12,7 @@ public class EnemyFlame : GameObject
     
     public override char Symbol => 'F';
     
-    public override ConsoleColor Color { get; set; } = ConsoleColor.Red;
+    public override ConsoleColor Color { get; set; } = ConsoleColor.DarkRed;
     
     public Coordinates LastChange { get; set; } = new Coordinates() { X = 0, Y = 0 };
     

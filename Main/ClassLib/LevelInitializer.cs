@@ -15,15 +15,18 @@ public class LevelInitializer
     }
     
     public static void InitializeLevel(Game gameboard, Player player, 
-        EnemyFlameSpawner flameSpawn, 
-        List<EnemyBarrelSpawner> barrels, 
+        BoneFire flameSpawn, 
+        List<Cannon> barrels, 
         CupCake boost,
-        ExpBooster exp)
+        ExpBooster exp,
+        HealthBooster health)
     {
         SetFlameSpawn(flameSpawn);
         SetPlayerSpawn(player);
         SetBoostSpawn(boost);
         SetExpSpawn(exp);
+        SetHealthSpawn(health);
+        
 
         int index = 0;
         int maxDoors = 1;
@@ -69,7 +72,7 @@ public class LevelInitializer
                 }
                 else if (i < 21 && ((j == 0 && i % 2 == 0) || (j == 24 && i % 2 != 0)))
                 {
-                    var barrel = new EnemyBarrelSpawner() { Position = new Coordinates() { X = i, Y = j } };
+                    var barrel = new Cannon() { Position = new Coordinates() { X = i, Y = j } };
                     gameboard[i][j].Init = barrel;
                     barrels.Add(barrel);
                 }
@@ -82,6 +85,10 @@ public class LevelInitializer
 
         gameboard[boost.Position.X][boost.Position.Y].Init = boost;
         gameboard[exp.Position.X][exp.Position.Y].Init = exp;
+        if (gameboard.LevelsPassed % 3 == 0)
+        {
+            gameboard[health.Position.X][health.Position.Y].Init = health;
+        }
         gameboard[player.Position.X][player.Position.Y].Current = player;
         gameboard[flameSpawn.Position.X][flameSpawn.Position.Y].Init = flameSpawn;
     }
@@ -97,7 +104,7 @@ public class LevelInitializer
         player.Position = new Coordinates(temp);
     }
     
-    private static void SetFlameSpawn(EnemyFlameSpawner flame)
+    private static void SetFlameSpawn(BoneFire flame)
     {
         var xList = new List<int> { 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
         var rndXIndex = new Random().Next(0, xList.Count);
@@ -120,6 +127,14 @@ public class LevelInitializer
         
         boost.Position = new  Coordinates() { X = xList[rndXIndex], Y = new Random().Next(1, 24) };
     }
+    
+    private static void SetHealthSpawn(HealthBooster boost)
+    {
+        var xList = new List<int> { 2, 3, 7, 13, 21, 22,};
+        var rndXIndex = new Random().Next(0, xList.Count);
+        
+        boost.Position = new  Coordinates() { X = xList[rndXIndex], Y = new Random().Next(1, 24) };
+    }
 
     public static void ClearAndGenerate(ObjectCollection collection)
     {
@@ -127,6 +142,6 @@ public class LevelInitializer
         collection.FlameEnemies.Clear();
         InitializeLevel(collection.Game, collection.Player, 
             collection.FlameSpawner, collection.BarrelSpawners, 
-            collection.Boost, collection.Exp);
+            collection.Boost, collection.Exp, collection.Health);
     }
 }

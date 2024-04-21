@@ -8,15 +8,17 @@ public class ObjectCollection
     
     public Player Player { get; set; }
     
-    public EnemyFlameSpawner FlameSpawner { get; set; }
+    public BoneFire FlameSpawner { get; set; }
     
-    public ConcurrentBag<EnemyFlame> FlameEnemies { get; set; }
+    public ConcurrentBag<Flame> FlameEnemies { get; set; }
     
-    public ConcurrentBag<EnemyBarrel> BarrelEnemies { get; set; }
+    public ConcurrentBag<Сannonball> BarrelEnemies { get; set; }
     
-    public List<EnemyBarrelSpawner> BarrelSpawners { get; set; }
+    public List<Cannon> BarrelSpawners { get; set; }
     
     public CupCake Boost { get; set; }
     
     public ExpBooster Exp { get; set; }
+    
+    public HealthBooster Health { get; set; }
 }

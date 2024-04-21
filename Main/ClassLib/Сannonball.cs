@@ -1,6 +1,6 @@
 ﻿namespace ClassLib;
 
-public class EnemyBarrel : GameObject
+public class Сannonball : GameObject
 {
     public Coordinates Position { get; set; }
     
@@ -10,9 +10,9 @@ public class EnemyBarrel : GameObject
     
     public override char Symbol { get; } = '*';
     
-    public override ConsoleColor Color { get; set; } = ConsoleColor.Red;
+    public override ConsoleColor Color { get; set; } = ConsoleColor.DarkRed;
 
-    public void MoveBarrel(Game gameBoard, Player player)
+    public void MoveCannonBall(Game gameBoard, Player player)
     {
         //Удаление бочки
         if (Position.Y == 0 || Position.Y == gameBoard[0].Length - 1) 

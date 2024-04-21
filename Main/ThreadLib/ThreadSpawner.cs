@@ -32,7 +32,7 @@ public class ThreadSpawner
         }
     };
     
-    public static void FlameSpawner(Game game, ConcurrentBag<EnemyFlame> list , EnemyFlameSpawner flame)
+    public static void FlameSpawner(Game game, ConcurrentBag<Flame> list , BoneFire flame)
     {
         while (true)
         {
@@ -44,7 +44,7 @@ public class ThreadSpawner
                     game.BarrelRunning = true;
                 }
                 
-                list.Add(new EnemyFlame() { Position = new Coordinates(flame.Position) });
+                list.Add(new Flame() { Position = new Coordinates(flame.Position) });
                 Thread.Sleep( (int)(6000 / DifficultyCoefficients[game.Difficulty]["spawn"]));
             }
             
@@ -56,7 +56,7 @@ public class ThreadSpawner
         
     }
 
-    public static void BarrelSpawner(Game game, ConcurrentBag<EnemyBarrel> list, List<EnemyBarrelSpawner> spawners)
+    public static void CannonSpawner(Game game, ConcurrentBag<Сannonball> list, List<Cannon> spawners)
     {
         while (true)
         {
@@ -70,7 +70,7 @@ public class ThreadSpawner
                 
                 foreach (var item in spawners)
                 {
-                    list.Add(new EnemyBarrel { Position = new Coordinates(item.Position), Direction = item.Position.Y < 13 ? 1 : -1});
+                    list.Add(new Сannonball { Position = new Coordinates(item.Position), Direction = item.Position.Y < 13 ? 1 : -1});
                 }
                 Thread.Sleep((int) (5000 / DifficultyCoefficients[game.Difficulty]["spawn"]));
             }
@@ -82,7 +82,7 @@ public class ThreadSpawner
         }
     }
     
-    public static void Flame(Game game, ConcurrentBag<EnemyFlame> flames,  Player player)
+    public static void Flame(Game game, ConcurrentBag<Flame> flames,  Player player)
     {
         while (true)
         {
@@ -111,7 +111,7 @@ public class ThreadSpawner
         
     }
 
-    public static void Barrel(Game game, ConcurrentBag<EnemyBarrel> barrels, Player player)
+    public static void CannonBall(Game game, ConcurrentBag<Сannonball> barrels, Player player)
     {
         while (true)
         {
@@ -125,7 +125,7 @@ public class ThreadSpawner
                 
                 foreach (var barrel in barrels)
                 { 
-                    barrel.MoveBarrel(game, player);
+                    barrel.MoveCannonBall(game, player);
                 }
                 
                 Thread.Sleep((int)(800 / DifficultyCoefficients[game.Difficulty]["movement"]));
