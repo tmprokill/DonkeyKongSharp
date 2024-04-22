@@ -7,9 +7,7 @@ public class MusicPlayer
 {
     public void PlayMusic(Game game)
     {
-        var path = Path.GetTempPath();
-        var name = "Song.wav";
-        path = Path.Combine(path, name);
+        var path = "Song.wav";
         
         try
         {

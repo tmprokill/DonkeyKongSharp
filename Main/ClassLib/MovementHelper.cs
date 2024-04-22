@@ -83,14 +83,12 @@ public class MovementHelper
         }
         else if (item != null && item.Symbol is 'K')
         {
-            player.Lives += 1;
             var key = (Key) gameBoard.FieldMatrix[values.Item1][values.Item2].Init;
             gameBoard.FieldMatrix[key.Opens.X][key.Opens.Y].Init.Transparent = true;
             gameBoard.FieldMatrix[values.Item1][values.Item2].Init = new Empty();
             
             gameBoard.ItemsCollected += 1;
         }
-        
     }
     
     private static void FreezeFlames(Game game)
