@@ -36,13 +36,13 @@ internal class Program
         
         while (true)
         {
-            
             Console.CursorVisible = false;
             
             Console.WriteLine("Welcome to the DonkeyKong Game!");
             
-            
             Console.WriteLine("Press S to start!");
+            
+            Console.WriteLine("Press T to get your stats!");
             
             Console.WriteLine("Press I to get your stats!");
             
@@ -61,19 +61,21 @@ internal class Program
                 
                 Thread.Sleep(1000);
                 Console.Clear();
-                
-                break;
             }
-            
-            if (key.Key == ConsoleKey.I) 
+            else if (key.Key == ConsoleKey.I) 
             {
                 Console.WriteLine(TemplateGetter.GetOptions());
-                Thread.Sleep(2000);
+                Thread.Sleep(1200);
                 Console.Clear();
                 StatsSaver.GetResults(collection.Player.Name);
             }
-            
-            if (key.Key == ConsoleKey.S)
+            else if (key.Key == ConsoleKey.T) 
+            {
+                Console.WriteLine(InstructionsGetter.GetInstructions());
+                Console.ReadKey();
+                Console.Clear();
+            }
+            else if (key.Key == ConsoleKey.S)
             {
                 Console.WriteLine(TemplateGetter.GetLoading());
                 Thread.Sleep(2000);
@@ -100,12 +102,12 @@ internal class Program
                 }
             }
         }
-        
     }
 
     internal static ObjectCollection GenerateObjectCollection()
     {
         var result = new ObjectCollection();
+        
         var game = new Game();
         
         var player = new Player();

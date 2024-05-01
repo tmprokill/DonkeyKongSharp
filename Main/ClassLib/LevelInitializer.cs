@@ -93,10 +93,12 @@ public class LevelInitializer
 
         gameboard[boost.Position.X][boost.Position.Y].Init = boost;
         gameboard[exp.Position.X][exp.Position.Y].Init = exp;
+        
         if (gameboard.LevelsPassed % 3 == 0)
         {
             gameboard[health.Position.X][health.Position.Y].Init = health;
         }
+        
         gameboard[player.Position.X][player.Position.Y].Current = player;
         gameboard[flameSpawn.Position.X][flameSpawn.Position.Y].Init = flameSpawn;
         gameboard[key.Position.X][key.Position.Y].Init = key;

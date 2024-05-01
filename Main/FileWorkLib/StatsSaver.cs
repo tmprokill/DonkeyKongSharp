@@ -28,7 +28,13 @@ public static class StatsSaver
         
         using (StreamReader r = new StreamReader(path))
         {
+            
             string json = r.ReadToEnd();
+            if (string.IsNullOrEmpty(json))
+            {
+                Console.WriteLine("No data yet, Play at least once");
+                return;
+            }
             var models = JsonSerializer.Deserialize<Dictionary<string, string>>(json);
             
             foreach (var pair in models)
@@ -42,10 +48,10 @@ public static class StatsSaver
         
         Console.WriteLine($"{result.Name}'s Results:");
         Console.WriteLine($"High score is: {result.HighScore}");
-        Console.WriteLine($"{result.LevelsPassed} Levels passed");
+        Console.WriteLine($"{result.LevelsPassed} Levels Passed");
         Console.WriteLine($"{result.PrizesCollected} Prizes Collected");
-        Console.WriteLine($"{result.MovesCount}");
-        Console.WriteLine($"{result.LosesCount}");
+        Console.WriteLine($"{result.MovesCount} Moves Done");
+        Console.WriteLine($"{result.LosesCount} Losses");
     }
 
     public static void UpdateStats(StatsModel model)
@@ -69,7 +75,16 @@ public static class StatsSaver
         using (StreamReader r = new StreamReader(path))
         {
             string json = r.ReadToEnd();
-            var models = JsonSerializer.Deserialize<Dictionary<string, string>>(json);
+
+            var models = new Dictionary<string, string>();
+            
+            try
+            {
+                models = JsonSerializer.Deserialize<Dictionary<string, string>>(json);
+            }
+            catch
+            {
+            }
             
             var key = model.Name;
             if (models.TryGetValue(key, out var value))

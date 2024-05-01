@@ -19,6 +19,7 @@ public class FlameHelper
             rnd = _directions[new Random().Next(0,4)];
         }
 
+        //обновление последнего перемещения
         last.X = rnd.X;
         last.Y = rnd.Y;
         

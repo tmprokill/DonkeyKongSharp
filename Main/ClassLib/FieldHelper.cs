@@ -15,7 +15,7 @@ public class FieldHelper
         gameBoard[enemy.Position.X][enemy.Position.Y].Current = enemy;
         gameBoard[lastX][lastY].Current = null;
     }
-    //Barrel
+    //Cannon
     public static void UpdateField(Game gameBoard, Сannonball enemy, int lastX, int lastY)
     {
         gameBoard[enemy.Position.X][enemy.Position.Y].Current = enemy;

@@ -7,7 +7,7 @@ namespace ThreadLib;
 
 public class ThreadSpawner
 {
-    public static Dictionary<int, Dictionary<string, double>> DifficultyCoefficients = new Dictionary<int, Dictionary<string, double>>
+    private static readonly Dictionary<int, Dictionary<string, double>> DifficultyCoefficients = new Dictionary<int, Dictionary<string, double>>
     {
         {
             0, new Dictionary<string, double>
@@ -53,7 +53,6 @@ public class ThreadSpawner
                 Thread.Sleep(1000);
             }
         }
-        
     }
 
     public static void CannonSpawner(Game game, ConcurrentBag<Сannonball> list, List<Cannon> spawners)
@@ -108,10 +107,9 @@ public class ThreadSpawner
                 Thread.Sleep(1000);
             }
         }
-        
     }
 
-    public static void CannonBall(Game game, ConcurrentBag<Сannonball> barrels, Player player)
+    public static void CannonBall(Game game, ConcurrentBag<Сannonball> cannonBalls, Player player)
     {
         while (true)
         {
@@ -123,9 +121,9 @@ public class ThreadSpawner
                     game.BarrelRunning = true;
                 }
                 
-                foreach (var barrel in barrels)
+                foreach (var cannonBall in cannonBalls)
                 { 
-                    barrel.MoveCannonBall(game, player);
+                    cannonBall.MoveCannonBall(game, player);
                 }
                 
                 Thread.Sleep((int)(800 / DifficultyCoefficients[game.Difficulty]["movement"]));
@@ -137,7 +135,6 @@ public class ThreadSpawner
                 Thread.Sleep(1000);
             }
         }
-        
     }
     
     public static void PrintField(Game game, Player player)
@@ -162,6 +159,7 @@ public class ThreadSpawner
     public static void KeyReader(Game game, Player player)
     {
         var keyHandler = new KeyPressHandler();
+        
         while (true)
         {
             while (game.Status == 0)
@@ -215,12 +213,12 @@ public class ThreadSpawner
                 Thread.Sleep(1000);
             }
         }
-        
     }
     
     private static void GameFinisher(Game game, string name)
     {
         var highScore = ResultKeeper.GetScore();
+        
         if (game.Status == -1)
         {
             if (game.Score > highScore)
@@ -247,6 +245,5 @@ public class ThreadSpawner
             
             Console.WriteLine($"{name}'s gameScore: {game.Score}");
         }
-        
     }
 }
