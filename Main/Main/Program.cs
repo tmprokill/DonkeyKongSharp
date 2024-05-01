@@ -42,7 +42,7 @@ internal class Program
             
             Console.WriteLine("Press S to start!");
             
-            Console.WriteLine("Press T to get your stats!");
+            Console.WriteLine("Press T to get instructions!");
             
             Console.WriteLine("Press I to get your stats!");
             
