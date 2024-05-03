@@ -26,7 +26,7 @@ public class MovementHelper
     {
         //End the game, проверка идёт по следующей позиции.
         var item = gameBoard.FieldMatrix[values.Item1][values.Item2].Current;
-        if (item != null && item.Symbol == 'P')
+        if (item is Player)
         {
             player.Lives -= 1;
             
@@ -44,7 +44,7 @@ public class MovementHelper
     {
         //End the game, проверка идёт по следующей позиции.
         var item = gameBoard.FieldMatrix[values.Item1][values.Item2].Current;
-        if (item != null && item.Symbol is '*' or 'F')
+        if (item is Flame or СannonBall)
         {
             player.Lives -= 1;
             if (player.Lives == 0)
@@ -61,33 +61,34 @@ public class MovementHelper
     public static void CheckBoost((int, int) values, Game gameBoard, Player player)
     {
         var item = gameBoard.FieldMatrix[values.Item1][values.Item2].Init;
-        
-        if (item != null && item.Symbol is 'C')
+
+        switch (item)
         {
-            FreezeBarrels(gameBoard);
-            FreezeFlames(gameBoard);
-            gameBoard.FieldMatrix[values.Item1][values.Item2].Init = new Empty();
-            gameBoard.ItemsCollected += 1;
-        }
-        else if (item != null && item.Symbol is 'E')
-        {
-            gameBoard.Score += 1000;
-            gameBoard.FieldMatrix[values.Item1][values.Item2].Init = new Empty();
-            gameBoard.ItemsCollected += 1;
-        }
-        else if (item != null && item.Symbol is 'H')
-        {
-            player.Lives += 1;
-            gameBoard.FieldMatrix[values.Item1][values.Item2].Init = new Empty();
-            gameBoard.ItemsCollected += 1;
-        }
-        else if (item != null && item.Symbol is 'K')
-        {
-            var key = (Key) gameBoard.FieldMatrix[values.Item1][values.Item2].Init;
-            gameBoard.FieldMatrix[key.Opens.X][key.Opens.Y].Init.Transparent = true;
-            gameBoard.FieldMatrix[values.Item1][values.Item2].Init = new Empty();
+            case CupCake:
+                FreezeBarrels(gameBoard);
+                FreezeFlames(gameBoard);
+                gameBoard.FieldMatrix[values.Item1][values.Item2].Init = new Empty();
+                gameBoard.ItemsCollected += 1;
+                break;
+            case ExpBooster:
+                gameBoard.Score += 1000;
+                gameBoard.FieldMatrix[values.Item1][values.Item2].Init = new Empty();
+                gameBoard.ItemsCollected += 1;
+                break;
+            case HealthBooster:
+                player.Lives += 1;
+                gameBoard.FieldMatrix[values.Item1][values.Item2].Init = new Empty();
+                gameBoard.ItemsCollected += 1;
+                break;
+            case Key:
+            {
+                var key = (Key) gameBoard.FieldMatrix[values.Item1][values.Item2].Init;
+                gameBoard.FieldMatrix[key.Opens.X][key.Opens.Y].Init.Transparent = true;
+                gameBoard.FieldMatrix[values.Item1][values.Item2].Init = new Empty();
             
-            gameBoard.ItemsCollected += 1;
+                gameBoard.ItemsCollected += 1;
+                break;
+            }
         }
     }
     

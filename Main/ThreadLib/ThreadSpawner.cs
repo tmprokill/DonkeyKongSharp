@@ -55,7 +55,7 @@ public class ThreadSpawner
         }
     }
 
-    public static void CannonSpawner(Game game, ConcurrentBag<Сannonball> list, List<Cannon> spawners)
+    public static void CannonSpawner(Game game, ConcurrentBag<СannonBall> list, List<Cannon> spawners)
     {
         while (true)
         {
@@ -69,7 +69,7 @@ public class ThreadSpawner
                 
                 foreach (var item in spawners)
                 {
-                    list.Add(new Сannonball { Position = new Coordinates(item.Position), Direction = item.Position.Y < 13 ? 1 : -1});
+                    list.Add(new СannonBall { Position = new Coordinates(item.Position), Direction = item.Position.Y < 13 ? 1 : -1});
                 }
                 Thread.Sleep((int) (5000 / DifficultyCoefficients[game.Difficulty]["spawn"]));
             }
@@ -109,7 +109,7 @@ public class ThreadSpawner
         }
     }
 
-    public static void CannonBall(Game game, ConcurrentBag<Сannonball> cannonBalls, Player player)
+    public static void CannonBall(Game game, ConcurrentBag<СannonBall> cannonBalls, Player player)
     {
         while (true)
         {

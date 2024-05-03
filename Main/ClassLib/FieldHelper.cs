@@ -16,13 +16,13 @@ public class FieldHelper
         gameBoard[lastX][lastY].Current = null;
     }
     //Cannon
-    public static void UpdateField(Game gameBoard, Сannonball enemy, int lastX, int lastY)
+    public static void UpdateField(Game gameBoard, СannonBall enemy, int lastX, int lastY)
     {
         gameBoard[enemy.Position.X][enemy.Position.Y].Current = enemy;
         gameBoard[lastX][lastY].Current = null;
     }
 
-    public static void RemoveEntity(Game gameBoard, Сannonball enemy)
+    public static void RemoveEntity(Game gameBoard, СannonBall enemy)
     {
         gameBoard[enemy.Position.X][enemy.Position.Y].Current = null;
     }

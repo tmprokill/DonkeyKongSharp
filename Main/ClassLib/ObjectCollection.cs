@@ -12,7 +12,7 @@ public class ObjectCollection
     
     public ConcurrentBag<Flame> FlameEnemies { get; set; }
     
-    public ConcurrentBag<Сannonball> BarrelEnemies { get; set; }
+    public ConcurrentBag<СannonBall> BarrelEnemies { get; set; }
     
     public List<Cannon> BarrelSpawners { get; set; }
     

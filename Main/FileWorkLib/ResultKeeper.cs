@@ -64,7 +64,7 @@ public class ResultKeeper
     public static int MatchAndParse(string line)
     {
         int result = 0;
-        string value = line[(line.IndexOf(':') + 1)..];
+        string value = line[(line.IndexOf(':') + 2)..];
         var pattern = new Regex("^[0-9]+$");
         
         if (pattern.IsMatch(value))

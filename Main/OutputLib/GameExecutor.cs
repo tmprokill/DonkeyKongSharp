@@ -7,8 +7,8 @@ public class GameExecutor
 {
     public void PrintMatrix(Game gameBoard, Player player)
     {
-        
         SetCursorPosition(0,0);
+        
         foreach (var t in gameBoard.FieldMatrix)
         {
             foreach (var f in t)

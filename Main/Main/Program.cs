@@ -121,7 +121,7 @@ internal class Program
         var key = new Key();
         
         var flameEnemies = new ConcurrentBag<Flame>();
-        var barrelEnemies = new ConcurrentBag<Сannonball>();
+        var barrelEnemies = new ConcurrentBag<СannonBall>();
 
         var flameSpawner = new BoneFire();
         var barrelSpawnerList = new List<Cannon>();

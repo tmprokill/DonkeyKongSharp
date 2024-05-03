@@ -1,6 +1,6 @@
 ﻿namespace ClassLib;
 
-public class Сannonball : GameObject
+public class СannonBall : GameObject
 {
     public Coordinates Position { get; set; }
     
