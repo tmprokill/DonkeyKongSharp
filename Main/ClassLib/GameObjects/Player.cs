@@ -6,6 +6,14 @@ public class Player : GameObject
     
     public int Lives { get; set; } = 3;
     
+    public int Score { get; set; } = 0;
+    
+    public int StepsAmount { get; set; }
+
+    public int LevelsPassed { get; set; }
+    
+    public int ItemsCollected { get; set; }
+    
     public Coordinates Spawn { get; set; }    
     
     public Coordinates Position { get; set; }
@@ -16,7 +24,7 @@ public class Player : GameObject
     
     public override ConsoleColor Color { get; set; } = ConsoleColor.Green;
     
-    public static void MovePlayer(Coordinates cord, Player player, Game gameBoard)
+    public static void MovePlayer(Coordinates cord, Player player, GameField gameField)
     {
         int tempX = cord.X + player.Position.X;
         int tempY = cord.Y + player.Position.Y;
@@ -24,11 +32,11 @@ public class Player : GameObject
         int lastX = player.Position.X;
         int lastY = player.Position.Y;
         
-        if (MovementHelper.CheckAccessibility((tempX,tempY), gameBoard) 
-            && MovementHelper.CheckTransparity((tempX, tempY), gameBoard))
+        if (MovementHelper.CheckAccessibility((tempX,tempY), gameField) 
+            && MovementHelper.CheckTransparency((tempX, tempY), gameField))
         {
-            MovementHelper.CheckBoost((tempX,tempY), gameBoard, player);
-            if (MovementHelper.CheckTakenPlayer((tempX, tempY), gameBoard, player))
+            MovementHelper.CheckBoost((tempX,tempY), gameField);
+            if (MovementHelper.CheckTaken((tempX, tempY), gameField, IsTaken))
             {
                 player.Position = new Coordinates(player.Spawn);
             }
@@ -38,15 +46,17 @@ public class Player : GameObject
                 player.Position.Y = tempY;
             }
             
-            FieldHelper.UpdateField(gameBoard, player, lastX, lastY);
+            FieldHelper.UpdateField(gameField, player, lastX, lastY);
         }
     }
 
-    public static void MovePlayerSpawn(Game game, Player player)
+    public static void MovePlayerSpawn(GameField gameField, Player player)
     {
         var last = player.Position;
         player.Position = new Coordinates(player.Spawn);
         
-        FieldHelper.UpdateField(game, player, last.X, last.Y);
+        FieldHelper.UpdateField(gameField, player, last.X, last.Y);
     }
+
+    private static readonly Predicate<GameObject> IsTaken = o => o is Flame or СannonBall;
 }

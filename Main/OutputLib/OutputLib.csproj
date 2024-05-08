@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\ClassLib\ClassLib.csproj" />
+      <ProjectReference Include="..\FileWorkLib\FileWorkLib.csproj" />
     </ItemGroup>
 
 </Project>

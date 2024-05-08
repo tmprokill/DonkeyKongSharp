@@ -1,13 +1,28 @@
 ﻿using NAudio.Wave;
 using ClassLib;
+using ClassLib.Enums;
 
 namespace FileWorkLib;
 
 public class MusicPlayer
 {
-    public void PlayMusic(Game game)
+    public static void Play(GameField gameField)
     {
-        var path = "Song.wav";
+        while (gameField.Status != GameStatus.Stopped)
+        {
+            var music = new MusicPlayer();
+            music.PlayMusic(gameField);
+            
+            while (gameField.Status == GameStatus.Paused)
+            {
+                Thread.Sleep(1000);
+            }
+        }
+    }
+    
+    private void PlayMusic(GameField gameField)
+    {
+        var path = "files/Song.wav";
         
         try
         {
@@ -15,12 +30,12 @@ public class MusicPlayer
             using var outputDevice = new WaveOutEvent();
             
             outputDevice.Init(audioFile);
-            outputDevice.Volume = 0.1F;
+            outputDevice.Volume = 0.05F;
             outputDevice.Play();
             
-            while (true)
+            while (gameField.Status != GameStatus.Stopped)
             {
-                if (game.Status == -1)
+                if (gameField.Status == GameStatus.Paused)
                 {
                     outputDevice.Stop();
                     break;
@@ -28,7 +43,7 @@ public class MusicPlayer
                     
                 if (outputDevice.PlaybackState == PlaybackState.Stopped)
                 {
-                    if (game.Status == 0)
+                    if (gameField.Status == 0)
                     {
                         audioFile.Seek(0, SeekOrigin.Begin);
                         outputDevice.Play();
@@ -38,7 +53,7 @@ public class MusicPlayer
                 Thread.Sleep(100);
             }
         }
-        catch (Exception ex)
+        catch (IOException ex)
         {
             Console.WriteLine("An error occurred: " + ex.Message);
         }

@@ -1,30 +1,32 @@
 ﻿using System.Collections.Concurrent;
 using System.Reflection;
 using ClassLib;
+using ClassLib.Enums;
 using FileWorkLib;
+using OutputLib;
 using ThreadLib;
 
 namespace Main;
 
-internal class Program
+internal class Game
 {
     internal static void Main(string[] args)
     {
         //initialization
         bool ini = false;
-        var collection = GenerateObjectCollection();
+        var game = GenerateGame();
         
         Console.WriteLine("Enter your name!");
-        collection.Player.Name = Console.ReadLine() ?? "default";
+        game.Objects.Player.Name = Console.ReadLine() ?? "default";
         
-        var keyReaderThread = new Thread(() => ThreadSpawner.KeyReader(collection.Game, collection.Player));
-        var flameThread = new Thread(() => ThreadSpawner.Flame(collection.Game, collection.FlameEnemies, collection.Player));
-        var flameSpawnerThread = new Thread(() => ThreadSpawner.FlameSpawner(collection.Game, collection.FlameEnemies, collection.FlameSpawner));
-        var barrelSpawnerThread = new Thread(() => ThreadSpawner.CannonSpawner(collection.Game, collection.BarrelEnemies, collection.BarrelSpawners));
-        var barrelThread = new Thread(() => ThreadSpawner.CannonBall(collection.Game, collection.BarrelEnemies, collection.Player));
-        var gamePrinterThread = new Thread(() => ThreadSpawner.PrintField(collection.Game, collection.Player));
-        var nextLevelThread = new Thread(() => ThreadSpawner.LevelListener(collection));
-        var musicPlayerThread = new Thread(() => ThreadSpawner.MusicPlayer(collection.Game));
+        var keyReaderThread = new Thread(() => KeyPressHelper.KeyReader(game));
+        var flameThread = new Thread(() => Flame.Move(game));
+        var flameSpawnerThread = new Thread(() => BoneFire.Spawn(game));
+        var barrelSpawnerThread = new Thread(() => Cannon.Spawn(game));
+        var barrelThread = new Thread(() => СannonBall.Move(game));
+        var gamePrinterThread = new Thread(() => GamePrinter.PrintField(game));
+        var nextLevelThread = new Thread(() => LevelInitializeHelper.LevelListener(game));
+        var musicPlayerThread = new Thread(() => MusicPlayer.Play(game));
 
         var threadList = new List<Thread>()
         {
@@ -34,7 +36,7 @@ internal class Program
             nextLevelThread, musicPlayerThread
         };
         
-        while (true)
+        while (game.Status != GameStatus.Stopped)
         {
             Console.CursorVisible = false;
             
@@ -54,11 +56,7 @@ internal class Program
             if (key.Key == ConsoleKey.L) 
             {
                 Console.WriteLine(TemplateGetter.GetExit());
-                foreach (var item in threadList)
-                {
-                    item.Interrupt();
-                }
-                
+                game.Status = GameStatus.Stopped;
                 Thread.Sleep(1000);
                 Console.Clear();
             }
@@ -67,7 +65,7 @@ internal class Program
                 Console.WriteLine(TemplateGetter.GetOptions());
                 Thread.Sleep(1200);
                 Console.Clear();
-                StatsSaver.GetResults(collection.Player.Name);
+                StatsSaver.GetResults(game.Objects.Player.Name);
             }
             else if (key.Key == ConsoleKey.T) 
             {
@@ -91,12 +89,12 @@ internal class Program
                     ini = true;
                 }
                 
-                if (collection.Game.Status != 0)
+                if (game.Status == GameStatus.Paused)
                 {
-                    Clear(collection);
+                    Clear(game);
                 }
                 
-                while (collection.Game.Status == 0)
+                while (game.Status == GameStatus.Playing)
                 {
                     Thread.Sleep(1000);
                 }
@@ -104,11 +102,19 @@ internal class Program
         }
     }
 
-    internal static ObjectCollection GenerateObjectCollection()
+    private static GameField GenerateGame()
     {
-        var result = new ObjectCollection();
-        
-        var game = new Game();
+        var game = new GameField();
+
+        GenerateObjects(game);
+
+        return game;
+    }
+    
+    //тут нихуя
+    private static void GenerateObjects(GameField gameField)
+    {
+        var result = new GameObjects();
         
         var player = new Player();
         
@@ -126,34 +132,33 @@ internal class Program
         var flameSpawner = new BoneFire();
         var barrelSpawnerList = new List<Cannon>();
         
-        
-        LevelInitializer.GenerateMatrixTemplate(25, game);
-        LevelInitializer.InitializeLevel(game, player, flameSpawner, barrelSpawnerList, boost, exp, health, key);
-
-        result.Game = game;
         result.Player = player;
         result.FlameSpawner = flameSpawner;
         result.FlameEnemies = flameEnemies;
         result.BarrelEnemies = barrelEnemies;
         result.BarrelSpawners = barrelSpawnerList;
-        result.Boost = boost;
-        result.Exp = exp;
-        result.Health = health;
+        result.CupCake = boost;
+        result.ExpBooster = exp;
+        result.HealthBooster = health;
         result.Key = key;
         
-        return result;
+        gameField.Objects = result;
+
+        LevelInitializeHelper.Invoke(25, gameField);
     }
 
-    private static void Clear(ObjectCollection collection)
+    private static void Clear(GameField gameField)
     {
         Console.Clear();
+        gameField.Objects.Player.LevelsPassed = default;
+        gameField.Objects.Player.StepsAmount = default;
+        gameField.Objects.Player.ItemsCollected = default;
+        gameField.Objects.Player.Score = default;
+        gameField.Objects.Player.Lives = 3;
+        gameField.Status = 0;
+        gameField.Difficulty = 0;
+        gameField.Objects.BarrelEnemies.Clear();
         
-        collection.Game.Status = 0;
-        collection.Game.Difficulty = 0;
-        collection.Game.Score = 0;
-        collection.Player.Lives = 3;
-        collection.BarrelEnemies.Clear();
-        
-        LevelInitializer.ClearAndGenerate(collection);
+        LevelInitializeHelper.ClearAndGenerate(gameField);
     }
 }

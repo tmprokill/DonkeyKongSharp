@@ -2,6 +2,28 @@
 
 public class TemplateGetter
 {
+    public static string GetGeneric(string first, string second, string third)
+    {
+        return "#############################" + Environment.NewLine +
+               $"#         {first}           #" + Environment.NewLine +
+               $"#        {second}           #" + Environment.NewLine +
+               "#                           #" + Environment.NewLine +
+               "#    *******************    #" + Environment.NewLine +
+               "#   *                   *   #" + Environment.NewLine +
+               $"#  *    {third}         *   #" + Environment.NewLine +
+               "#   *                   *   #" + Environment.NewLine +
+               "#    *******************    #" + Environment.NewLine +
+               "#                           #" + Environment.NewLine +
+               "#   ^__^                    #" + Environment.NewLine +
+               @"#  (oo)\\_______            #" + Environment.NewLine +
+               @"#  (__)\\       )\\/\\      #" + Environment.NewLine +
+               "#      ||----w |            #" + Environment.NewLine +
+               "#      ||     ||            #" + Environment.NewLine +
+               "#                           #" + Environment.NewLine +
+               "#    Loading...             #" + Environment.NewLine +
+               "#############################";
+    }
+    
     public static string GetLoading()
     {
         return "#############################" + Environment.NewLine +

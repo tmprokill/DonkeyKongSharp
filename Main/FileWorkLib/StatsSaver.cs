@@ -6,42 +6,45 @@ namespace FileWorkLib;
 
 public static class StatsSaver
 {
-    public static void GetResults(string playerName)
+    private static void EnsureExists(string path)
     {
-        var temp = Path.GetTempPath();
-        var name = "Stats.json";
-        var path = Path.Combine(temp, name);
-        
-        
         if (!File.Exists(path)) 
         {
             using (File.Create(path)) {}
 
             using (StreamWriter w = new StreamWriter(path))
             {
-                var obj = new JsonObject();
                 w.Write(new JsonObject());
             }
         }
+    }
+    
+    public static void GetResults(string playerName)
+    {
+        var temp = Path.GetTempPath();
+        const string name = "Stats.json";
+        var path = Path.Combine(temp, name);
+        
+        EnsureExists(path);
         
         var result = new StatsModel(){Name = playerName};
         
         using (StreamReader r = new StreamReader(path))
         {
-            
             string json = r.ReadToEnd();
             if (string.IsNullOrEmpty(json))
             {
                 Console.WriteLine("No data yet, Play at least once");
                 return;
             }
-            var models = JsonSerializer.Deserialize<Dictionary<string, string>>(json);
+            
+            var models = JsonSerializer.Deserialize<Dictionary<string, StatsModel>>(json);
             
             foreach (var pair in models)
             {
                 if (pair.Key == playerName)
                 {
-                    result = JsonSerializer.Deserialize<StatsModel>(pair.Value);
+                    result = pair.Value;
                 }
             }
         }
@@ -57,52 +60,37 @@ public static class StatsSaver
     public static void UpdateStats(StatsModel model)
     {
         var temp = Path.GetTempPath();
-        var name = "Stats.json";
+        const string name = "Stats.json";
         var path = Path.Combine(temp, name);
 
-        if (!File.Exists(path)) 
-        {
-            using (File.Create(path)) {}
-
-            using (StreamWriter w = new StreamWriter(path))
-            {
-                var obj = new JsonObject();
-                w.Write(new JsonObject());
-            }
-        }
+        EnsureExists(path);
 
         var result = "";
         using (StreamReader r = new StreamReader(path))
         {
             string json = r.ReadToEnd();
 
-            var models = new Dictionary<string, string>();
+            var models = new Dictionary<string, StatsModel>();
             
             try
             {
-                models = JsonSerializer.Deserialize<Dictionary<string, string>>(json);
+                models = JsonSerializer.Deserialize<Dictionary<string, StatsModel>>(json);
             }
-            catch
+            catch(JsonException)
             {
             }
             
             var key = model.Name;
-            if (models.TryGetValue(key, out var value))
+            if (models is not null && !models.TryAdd(key, model))
             {
-                var item = JsonSerializer.Deserialize<StatsModel>(value);
-            
-                item.LevelsPassed += model.LevelsPassed;
-                item.LosesCount += model.LosesCount;
-                item.MovesCount += model.MovesCount;
-                item.PrizesCollected += model.PrizesCollected;
-                item.HighScore = item.HighScore > model.HighScore ? item.HighScore : model.HighScore;
-                models[key] = JsonSerializer.Serialize(item);
+                var existingModel = models[key];
+                existingModel.LevelsPassed += model.LevelsPassed;
+                existingModel.LosesCount += model.LosesCount;
+                existingModel.MovesCount += model.MovesCount;
+                existingModel.PrizesCollected += model.PrizesCollected;
+                existingModel.HighScore = Math.Max(existingModel.HighScore, model.HighScore);
             }
-            else
-            {
-                models.Add(key, JsonSerializer.Serialize(model));
-            }
-            
+
             result = JsonSerializer.Serialize(models);
         }
         

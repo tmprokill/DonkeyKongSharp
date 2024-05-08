@@ -2,10 +2,8 @@
 
 namespace ClassLib;
 
-public class ObjectCollection
+public class GameObjects
 {
-    public Game Game { get; set; }
-    
     public Player Player { get; set; }
     
     public BoneFire FlameSpawner { get; set; }
@@ -16,11 +14,11 @@ public class ObjectCollection
     
     public List<Cannon> BarrelSpawners { get; set; }
     
-    public CupCake Boost { get; set; }
+    public CupCake CupCake { get; set; }
     
-    public ExpBooster Exp { get; set; }
+    public ExpBooster ExpBooster { get; set; }
     
-    public HealthBooster Health { get; set; }
+    public HealthBooster HealthBooster { get; set; }
     
     public Key Key { get; set; }
 }
