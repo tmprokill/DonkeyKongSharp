@@ -8,6 +8,7 @@
     </PropertyGroup>
     <ItemGroup>
         <ProjectReference Include= "..\ClassLib\ClassLib.csproj" />
-        <ProjectReference Include="..\ThreadLib\ThreadLib.csproj" />
+        <ProjectReference Include="..\FileWorkLib\FileWorkLib.csproj" />
+        <ProjectReference Include="..\OutputLib\OutputLib.csproj" />
     </ItemGroup>
 </Project>

@@ -59,11 +59,11 @@ public class GamePrinter
             if (player.Score > highScore)
             {
                 ResultKeeper.WriteScore(player.Score, player.Name);
-                Console.WriteLine(TemplateGetter.GetWin());
+                WriteLine(TemplateGetter.GetWin());
             }
             else
             {
-                Console.WriteLine(TemplateGetter.GetLose());
+                WriteLine(TemplateGetter.GetLose());
             }
 
             var model = new StatsModel()
@@ -78,7 +78,7 @@ public class GamePrinter
             
             StatsSaver.UpdateStats(model);
             
-            Console.WriteLine($"{player.Name}'s gameScore: {player.Score}");
+            WriteLine($"{player.Name}'s gameScore: {player.Score}");
         }
     }
 }

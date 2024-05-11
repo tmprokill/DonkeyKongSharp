@@ -1,10 +1,8 @@
 ﻿using System.Collections.Concurrent;
-using System.Reflection;
 using ClassLib;
 using ClassLib.Enums;
 using FileWorkLib;
 using OutputLib;
-using ThreadLib;
 
 namespace Main;
 
@@ -111,7 +109,6 @@ internal class Game
         return game;
     }
     
-    //тут нихуя
     private static void GenerateObjects(GameField gameField)
     {
         var result = new GameObjects();

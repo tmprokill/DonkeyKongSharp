@@ -6,7 +6,7 @@ public class Level
     
     public double MovementSpeed { get; set; } = 1.0;
     
-    private double _speedIncreaseFactor = 1.5; // Начальный коэффициент увеличения
+    private double _speedIncreaseFactor = 1.5; 
 
     public static void IncreaseSpeed(GameField gameField)
     {
