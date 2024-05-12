@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OutputLib", "OutputLib\Outp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileWorkLib", "FileWorkLib\FileWorkLib.csproj", "{9A393338-AB64-4FA0-BBE5-4F59C37ECC78}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormsLib", "WinFormsLib\WinFormsLib.csproj", "{9EAC29C9-293D-401D-968F-E1ACCBD426EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{9A393338-AB64-4FA0-BBE5-4F59C37ECC78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A393338-AB64-4FA0-BBE5-4F59C37ECC78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A393338-AB64-4FA0-BBE5-4F59C37ECC78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EAC29C9-293D-401D-968F-E1ACCBD426EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EAC29C9-293D-401D-968F-E1ACCBD426EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EAC29C9-293D-401D-968F-E1ACCBD426EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EAC29C9-293D-401D-968F-E1ACCBD426EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
