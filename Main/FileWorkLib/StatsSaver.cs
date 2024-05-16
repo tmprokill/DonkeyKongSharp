@@ -19,7 +19,7 @@ public static class StatsSaver
         }
     }
     
-    public static void GetResults(string playerName)
+    public static string GetResults(string playerName)
     {
         var temp = Path.GetTempPath();
         const string name = "Stats.json";
@@ -35,7 +35,7 @@ public static class StatsSaver
             if (string.IsNullOrEmpty(json))
             {
                 Console.WriteLine("No data yet, Play at least once");
-                return;
+                return "";
             }
             
             var models = JsonSerializer.Deserialize<Dictionary<string, StatsModel>>(json);
@@ -49,12 +49,20 @@ public static class StatsSaver
             }
         }
         
-        Console.WriteLine($"{result.Name}'s Results:");
-        Console.WriteLine($"High score is: {result.HighScore}");
-        Console.WriteLine($"{result.LevelsPassed} Levels Passed");
-        Console.WriteLine($"{result.PrizesCollected} Prizes Collected");
-        Console.WriteLine($"{result.MovesCount} Moves Done");
-        Console.WriteLine($"{result.LosesCount} Losses");
+        //Console.WriteLine($"{result.Name}'s Results:");
+        //Console.WriteLine($"High score is: {result.HighScore}");
+        //Console.WriteLine($"{result.LevelsPassed} Levels Passed");
+        //Console.WriteLine($"{result.PrizesCollected} Prizes Collected");
+        //Console.WriteLine($"{result.MovesCount} Moves Done");
+        //Console.WriteLine($"{result.LosesCount} Losses");
+        return $"{result.Name}'s Results:" + "\n" +
+               $"High score is: {result.HighScore}" + "\n" +
+               $"{result.LevelsPassed} Levels Passed" + "\n" +
+               $"{result.PrizesCollected} Prizes Collected" + "\n" +
+               $"{result.MovesCount} Moves Done" + "\n" +
+               $"{result.LosesCount} Losses";
+
+
     }
 
     public static void UpdateStats(StatsModel model)
