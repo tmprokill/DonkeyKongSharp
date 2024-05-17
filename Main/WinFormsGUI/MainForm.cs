@@ -1,12 +1,17 @@
+using ClassLib;
 using FileWorkLib;
 
 namespace WinFormsGUI;
 
 public partial class MainForm : Form
 {
-    public MainForm()
+    private readonly string _login;
+    private readonly GameField _gameField;
+    public MainForm(string login)
     {
         InitializeComponent();
+        _login = login;
+        _gameField = new GameField();
     }
 
     private void StartButton_MouseHover(object sender, EventArgs e)
@@ -58,7 +63,7 @@ public partial class MainForm : Form
     {
         TextPanel.AutoScroll = false;
         TextLabel.Location = new Point(200, 200);
-        TextLabel.Text = StatsSaver.GetResults("Skibidi");
+        TextLabel.Text = StatsSaver.GetResults(_login);
     }
 
     private void InstructionsButton_Click(object sender, EventArgs e)
@@ -68,5 +73,17 @@ public partial class MainForm : Form
         TextLabel.Text = InstructionsGetter.GetInstructions();
         TextLabel.MaximumSize = new Size(640, 0);
         TextPanel.AutoScroll = true;
+    }
+
+    private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+    {
+        Application.Exit();
+    }
+
+    private void StartButton_Click(object sender, EventArgs e)
+    {
+        Hide();
+        GameForm gameForm = new GameForm(_login, this, _gameField);
+        gameForm.Show();
     }
 }

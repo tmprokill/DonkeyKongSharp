@@ -6,16 +6,15 @@ using OutputLib;
 
 namespace Main;
 
-internal class Game
+public class Game
 {
-    internal static void Main(string[] args)
+    public static void Main()
     {
         //initialization
         bool ini = false;
         var game = GenerateGame();
         
-        Console.WriteLine("Enter your name!");
-        game.Objects.Player.Name = Console.ReadLine() ?? "default";
+        game.Objects.Player.Name = "login";
         
         var keyReaderThread = new Thread(() => KeyPressHelper.KeyReader(game));
         var flameThread = new Thread(() => Flame.Move(game));
@@ -100,7 +99,7 @@ internal class Game
         }
     }
 
-    private static GameField GenerateGame()
+    public static GameField GenerateGame()
     {
         var game = new GameField();
 

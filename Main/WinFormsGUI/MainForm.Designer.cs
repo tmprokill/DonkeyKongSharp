@@ -103,6 +103,7 @@ partial class MainForm
         StartButton.SizeMode = PictureBoxSizeMode.StretchImage;
         StartButton.TabIndex = 0;
         StartButton.TabStop = false;
+        StartButton.Click += StartButton_Click;
         StartButton.MouseLeave += StartButton_MouseLeave;
         StartButton.MouseHover += StartButton_MouseHover;
         // 
@@ -148,6 +149,7 @@ partial class MainForm
         Name = "MainForm";
         StartPosition = FormStartPosition.CenterScreen;
         Text = "Main";
+        FormClosed += MainForm_FormClosed;
         ((System.ComponentModel.ISupportInitialize)StatisticsButton).EndInit();
         ((System.ComponentModel.ISupportInitialize)InstructionsButton).EndInit();
         ((System.ComponentModel.ISupportInitialize)ExitButton).EndInit();

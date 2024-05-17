@@ -25,6 +25,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\FileWorkLib\FileWorkLib.csproj" />
+      <ProjectReference Include="..\Main\Main.csproj" />
     </ItemGroup>
 
 </Project>
