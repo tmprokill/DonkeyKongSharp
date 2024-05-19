@@ -12,7 +12,7 @@ public class Flame : GameObject
     
     public override bool Transparent { get; set; } = false;
     
-    public override char Symbol => 'F';
+    public override string Image => "Flame";
     
     public override ConsoleColor Color { get; set; } = ConsoleColor.DarkRed;
     

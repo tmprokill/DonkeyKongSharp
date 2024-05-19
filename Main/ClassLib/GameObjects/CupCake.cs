@@ -6,7 +6,7 @@ public class CupCake : GameObject
     
     public override bool Transparent { get; set; } = true;
     
-    public override char Symbol { get; } = 'C';
+    public override string Image { get; } = "CupCake";
 
     public override ConsoleColor Color { get; set; } = ConsoleColor.Magenta;
 

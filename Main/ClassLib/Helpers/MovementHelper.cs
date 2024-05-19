@@ -33,7 +33,8 @@ public class MovementHelper
             gameField.Objects.Player.Lives -= 1;
             if (gameField.Objects.Player.Lives == 0)
             {
-                gameField.Status = GameStatus.Paused;
+                //Changed
+                gameField.Status = GameStatus.Stopped;
             }
 
             return true;

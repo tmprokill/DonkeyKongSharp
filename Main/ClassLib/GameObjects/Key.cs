@@ -8,7 +8,7 @@ public class Key : GameObject
     
     public override bool Transparent { get; set; } = true;
     
-    public override char Symbol { get; } = 'K';
+    public override string Image { get; } = "Key";
     
     public override ConsoleColor Color { get; set; } = ConsoleColor.White;
 

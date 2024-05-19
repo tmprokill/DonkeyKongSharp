@@ -83,7 +83,7 @@ public partial class MainForm : Form
     private void StartButton_Click(object sender, EventArgs e)
     {
         Hide();
-        GameForm gameForm = new GameForm(_login, this, _gameField);
+        GameForm gameForm = new GameForm(_login, this);
         gameForm.Show();
     }
 }

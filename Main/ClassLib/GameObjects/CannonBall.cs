@@ -11,7 +11,7 @@ public class СannonBall : GameObject
     
     public override bool Transparent { get; set; } = false;
     
-    public override char Symbol { get; } = '*';
+    public override string Image { get; } = "CannonBall";
     
     public override ConsoleColor Color { get; set; } = ConsoleColor.DarkRed;
 

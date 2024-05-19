@@ -6,7 +6,7 @@ public class HealthBooster : GameObject
     
     public override bool Transparent { get; set; } = true;
     
-    public override char Symbol { get; } = 'H';
+    public override string Image { get; } = "HealthBooster";
     
     public override ConsoleColor Color { get; set; } = ConsoleColor.Red;
 

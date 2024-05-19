@@ -25,20 +25,20 @@ public class KeyPressHelper
         }
     }
     
-    private void HandleKeyPress(ConsoleKey key, GameField gameField)
+    public void HandleKeyPress(ConsoleKey key, GameField gameField)
     {
         switch (key)
         {
-            case ConsoleKey.UpArrow:
+            case ConsoleKey.W:
                 Player.MovePlayer(new Coordinates(){X = -1, Y = 0}, gameField.Objects.Player, gameField);
                 break;
-            case ConsoleKey.DownArrow:
+            case ConsoleKey.S:
                 Player.MovePlayer(new Coordinates(){X = 1, Y = 0}, gameField.Objects.Player, gameField);
                 break;
-            case ConsoleKey.RightArrow:
+            case ConsoleKey.D:
                 Player.MovePlayer(new Coordinates(){X = 0, Y = 1}, gameField.Objects.Player, gameField);
                 break;
-            case ConsoleKey.LeftArrow:
+            case ConsoleKey.A:
                 Player.MovePlayer(new Coordinates(){X = 0, Y = -1}, gameField.Objects.Player, gameField);
                 break;
             case ConsoleKey.H:

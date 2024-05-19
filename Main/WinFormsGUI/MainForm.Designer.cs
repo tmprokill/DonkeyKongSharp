@@ -29,6 +29,7 @@ partial class MainForm
     /// </summary>
     private void InitializeComponent()
     {
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
         GameLabel = new Label();
         StatisticsButton = new PictureBox();
         InstructionsButton = new PictureBox();
@@ -125,7 +126,7 @@ partial class MainForm
         TextPanel.Controls.Add(TextLabel);
         TextPanel.Location = new Point(462, 68);
         TextPanel.Name = "TextPanel";
-        TextPanel.Size = new Size(700, 650);
+        TextPanel.Size = new Size(700, 629);
         TextPanel.TabIndex = 6;
         // 
         // TextLabel
@@ -146,6 +147,7 @@ partial class MainForm
         Controls.Add(TextPanel);
         Controls.Add(MenuPanel);
         Controls.Add(GameLabel);
+        Icon = (Icon)resources.GetObject("$this.Icon");
         Name = "MainForm";
         StartPosition = FormStartPosition.CenterScreen;
         Text = "Main";

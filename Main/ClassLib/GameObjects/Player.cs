@@ -13,6 +13,8 @@ public class Player : GameObject
     public int LevelsPassed { get; set; }
     
     public int ItemsCollected { get; set; }
+
+    private int lastMove = 0;
     
     public Coordinates Spawn { get; set; }    
     
@@ -20,7 +22,7 @@ public class Player : GameObject
     
     public override bool Transparent { get; set; } = false;
     
-    public override char Symbol { get;} = 'P';
+    public override string Image => lastMove == 0 ? "Player_Right" : "Player_Left";
     
     public override ConsoleColor Color { get; set; } = ConsoleColor.Green;
     
@@ -32,6 +34,17 @@ public class Player : GameObject
         int lastX = player.Position.X;
         int lastY = player.Position.Y;
         
+        //spriteLogic
+        if(cord.Y == -1)
+        {
+            player.lastMove = -1;
+        }
+        else if(cord.Y == 1)
+        {
+            player.lastMove = 0;
+        }
+        //
+
         if (MovementHelper.CheckAccessibility((tempX,tempY), gameField) 
             && MovementHelper.CheckTransparency((tempX, tempY), gameField))
         {

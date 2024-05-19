@@ -8,99 +8,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Main
 {
     public class UIGame
     {
-        public static void Main(string login)
+        public static void InitThreads(GameField _game)
         {
-            //initialization
-            bool ini = false;
-            var game = GenerateGame();
-
-            game.Objects.Player.Name = login;
-
-            var keyReaderThread = new Thread(() => KeyPressHelper.KeyReader(game));
-            var flameThread = new Thread(() => Flame.Move(game));
-            var flameSpawnerThread = new Thread(() => BoneFire.Spawn(game));
-            var barrelSpawnerThread = new Thread(() => Cannon.Spawn(game));
-            var barrelThread = new Thread(() => СannonBall.Move(game));
-            var gamePrinterThread = new Thread(() => GamePrinter.PrintField(game));
-            var nextLevelThread = new Thread(() => LevelInitializeHelper.LevelListener(game));
-            var musicPlayerThread = new Thread(() => MusicPlayer.Play(game));
+            var flameThread = new Thread(() => Flame.Move(_game));
+            var flameSpawnerThread = new Thread(() => BoneFire.Spawn(_game));
+            var barrelSpawnerThread = new Thread(() => Cannon.Spawn(_game));
+            var barrelThread = new Thread(() => СannonBall.Move(_game));
+            var nextLevelThread = new Thread(() => LevelInitializeHelper.LevelListener(_game));
+            var musicPlayerThread = new Thread(() => MusicPlayer.Play(_game));
 
             var threadList = new List<Thread>()
             {
-                keyReaderThread, flameThread,
+                flameThread,
                 flameSpawnerThread, barrelSpawnerThread,
-                barrelThread, gamePrinterThread,
-                nextLevelThread, musicPlayerThread
+                barrelThread,
+                nextLevelThread, musicPlayerThread,
             };
 
-            while (game.Status != GameStatus.Stopped)
+            foreach (var item in threadList)
             {
-                Console.CursorVisible = false;
-
-                Console.WriteLine("Welcome to the DonkeyKong Game!");
-
-                Console.WriteLine("Press S to start!");
-
-                Console.WriteLine("Press T to get instructions!");
-
-                Console.WriteLine("Press I to get your stats!");
-
-                Console.WriteLine("Press L to close!");
-
-                var key = Console.ReadKey();
-                Console.WriteLine();
-
-                if (key.Key == ConsoleKey.L)
-                {
-                    Console.WriteLine(TemplateGetter.GetExit());
-                    game.Status = GameStatus.Stopped;
-                    Thread.Sleep(1000);
-                    Console.Clear();
-                }
-                else if (key.Key == ConsoleKey.I)
-                {
-                    Console.WriteLine(TemplateGetter.GetOptions());
-                    Thread.Sleep(1200);
-                    Console.Clear();
-                    StatsSaver.GetResults(game.Objects.Player.Name);
-                }
-                else if (key.Key == ConsoleKey.T)
-                {
-                    Console.WriteLine(InstructionsGetter.GetInstructions());
-                    Console.ReadKey();
-                    Console.Clear();
-                }
-                else if (key.Key == ConsoleKey.S)
-                {
-                    Console.WriteLine(TemplateGetter.GetLoading());
-                    Thread.Sleep(2000);
-                    Console.Clear();
-
-                    if (!ini)
-                    {
-                        foreach (var item in threadList)
-                        {
-                            item.Start();
-                        }
-
-                        ini = true;
-                    }
-
-                    if (game.Status == GameStatus.Paused)
-                    {
-                        Clear(game);
-                    }
-
-                    while (game.Status == GameStatus.Playing)
-                    {
-                        Thread.Sleep(1000);
-                    }
-                }
+                item.Start();
             }
         }
 
@@ -148,7 +81,7 @@ namespace Main
             LevelInitializeHelper.Invoke(25, gameField);
         }
 
-        private static void Clear(GameField gameField)
+        public static void Clear(GameField gameField)
         {
             Console.Clear();
             gameField.Objects.Player.LevelsPassed = default;

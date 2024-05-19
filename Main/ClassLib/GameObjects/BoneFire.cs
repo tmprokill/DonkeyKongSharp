@@ -9,7 +9,7 @@ public class BoneFire : GameObject
     
     public override bool Transparent { get; set; } = false;
     
-    public override char Symbol { get; } = 'B';
+    public override string Image { get; } = "BoneFire";
 
     public override ConsoleColor Color { get; set; } = ConsoleColor.DarkRed;
     

@@ -8,7 +8,7 @@ public class Cannon : GameObject
     
     public override bool Transparent { get; set; } = false;
     
-    public override char Symbol { get; } = 'S';
+    public override string Image => Position.Y < 13 ? "Cannon_Left" : "Cannon_Right";
 
     public override ConsoleColor Color { get; set; } = ConsoleColor.DarkRed;
     

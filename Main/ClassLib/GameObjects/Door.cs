@@ -4,7 +4,7 @@ public class Door : GameObject
 {
     public override bool Transparent { get; set; } = true;
     
-    public override char Symbol => Transparent == false ? '@' : '/';
+    public override string Image => Transparent == false ? "Door_Closed" : "Door_Opened";
 
     public override ConsoleColor Color { get; set; } = ConsoleColor.DarkBlue;
 }

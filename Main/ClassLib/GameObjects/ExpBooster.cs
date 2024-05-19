@@ -6,7 +6,7 @@ public class ExpBooster : GameObject
     
     public override bool Transparent { get; set; } = true;
     
-    public override char Symbol { get; } = 'E';
+    public override string Image { get; } = "Star";
 
     public override ConsoleColor Color { get; set; } = ConsoleColor.Yellow;
 

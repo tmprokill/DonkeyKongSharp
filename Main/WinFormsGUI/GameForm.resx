@@ -117,4 +117,36 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="GameTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAEBQAAAEAIAB4BQAAFgAAACgAAAAQAAAAKAAAAAEAIAAAAAAAAAUAAAAAAAAAAAAAAAAAAAAA
+        AAD///8A////AAAAAAAAAP8AAAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AGX/AAAA
+        /wAAAAAA////AAAAAAAAAP8AAAAA/wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA
+        AP8AZf8AAAD/AAAAAAAAAP8AAAAA/wAA//8AZf//AGX//wBl//8AZf//AGX//wBl//8AZf//AGX//wBl
+        //8AAP//AAAA/wAA/wAAAAAAAAAA/wAA//8AZf//AKr//wCq//8Aqv//AKr//wCq//8Aqv//AKr//wCq
+        //8Aqv//AGX//wAA//8AAAD/AAAA/wAA//8AZf//AGX//wCq//8AAAD/AAAA/wAAAP8AAAD/AAAA/wAA
+        AP8Aqv//AKr//wBl//8AAP//AAAA/wAAAP8AAP//AGX//wCq//8AAAD/AKr//wCq//8Aqv//AKr//wCq
+        //8Aqv//AAAA+wCq//8AZf//AAD//wAAAP8AAAD/AAD//wBl//8Aqv//AKr//wCq//8Aqv//AKr//wCq
+        //8Aqv//AKr//wCq//8Aqv//AGX//wAA//8AAAD/AAAA/wAA//8AZf//AKr//wCq//8Aqv//AKr//wCq
+        //8Aqv//AKr//wCq//8Aqv//AKr//wBl//8AAP//AAAA/wAAAP8AAP//AGX//wCq//8Aqv//AKr//wAA
+        AP8Aqv//AKr//wAAAP8Aqv//AKr//wBl//8AZf//AAD//wAAAP8AAAD/AAD//wBl//8AZf//AKr//wCq
+        //8AAAD/AKr//wCq//8AAAD/AKr//wCq//8Aqv//AGX//wAA//8AAAD/////AAAAAP8AAP//AGX//wBl
+        //8Aqv//AAAA/wCq//8Aqv//AAAA/wCq//8Aqv//AGX//wAA//8AAP//AAAA/////wAAAAD/AAD//wAA
+        //8AZf//AKr//wCq//8Aqv//AKr//wCq//8Aqv//AGX//wBl//8AAP//AAAA/wAAAP////8A////AAAA
+        AP8AAP//AAD//wBl//8Aqv//AKr//wBl//8AZf//AGX//wBl//8AZf//AAD//wAAAP8AAAAA////AP//
+        /wAAAAD/AAD//wAA//8AAP//AGX//wBl//8AZf//AAAA/wAA//8AAP//AAD//wAA//8AAAD/AAAAAP//
+        /wD///8A////AAAAAP8AAP//AAD//wBl//8AAP//AAD//wAAAP8AAAD/AAD//wAAAP8AAAD/AAAAAP//
+        /wD///8A////AP///wD///8AAAAA/wAA//8AAP//AAD//wAAAP8AAAAA////AAAAAP8AAAD/AAAAAP//
+        /wD///8A////AP///wD///8A////AP///wAAAAD/AAD//wAA//8AAAD/AAD/AAAAAAD///8A////AP//
+        /wD///8A////AP///wD///8A////AP///wD///8A////AAAAAP8AAP//AAAA/wAA/wAAAAAA////AP//
+        /wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8AAAAA/wAA//8AAAD/AAAAAP//
+        /wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wAAAAD/AAAA/wAA
+        AAD///8A////AP///wD///8A////APAHAADgAwAAwAEAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AACAAAAAgAAAAMABAADAAQAA4AMAAPBnAAD4fwAA/H8AAP4/AAD/PwAA
+</value>
+  </data>
 </root>
