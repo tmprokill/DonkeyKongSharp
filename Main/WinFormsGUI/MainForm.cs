@@ -6,7 +6,9 @@ namespace WinFormsGUI;
 public partial class MainForm : Form
 {
     private readonly string _login;
+    
     private readonly GameField _gameField;
+    
     public MainForm(string login)
     {
         InitializeComponent();

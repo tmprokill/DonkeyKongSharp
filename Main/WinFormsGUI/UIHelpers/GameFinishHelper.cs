@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WinFormsGUI.UIHelpers
 {
-    public class GameFinisher
+    public class GameFinishHelper
     {
         public static string UpdateAndReturnStats(GameField _game)
         {
@@ -23,17 +23,19 @@ namespace WinFormsGUI.UIHelpers
             };
 
             StatsSaver.UpdateStats(result);
+            
             if(ResultKeeper.GetScore() < result.HighScore) 
             {
                 ResultKeeper.WriteScore(result.HighScore, result.Name);
             }
 
             return $"{result.Name}'s Results:" + "\n" +
-              $"High score is: {result.HighScore}" + "\n" +
+              $"Score is: {result.HighScore}" + "\n" +
               $"{result.LevelsPassed} Levels Passed" + "\n" +
               $"{result.PrizesCollected} Prizes Collected" + "\n" +
               $"{result.MovesCount} Moves Done" + "\n" +
               $"{result.LosesCount} Losses";
         }
+
     }
 }
