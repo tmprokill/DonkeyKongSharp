@@ -53,6 +53,7 @@ public class LevelInitializeHelper
         SetExpSpawn(objects.ExpBooster);
         SetHealthSpawn(objects.HealthBooster);
         SetKeySpawn(objects.Key); 
+        SetDogSpawn(objects.Dog);
 
         int index = 0;
         int maxDoors = 1;
@@ -99,8 +100,6 @@ public class LevelInitializeHelper
                             gameField[i][j].Init.Transparent = false;
                             objects.Key.Opens = new Coordinates() { X = i, Y = j };
                         }
-                        
-
                     }
                 }
                 else if (i < 21 && ((j == 0 && i % 2 == 0) || (j == 24 && i % 2 != 0)))
@@ -122,6 +121,11 @@ public class LevelInitializeHelper
         if (objects.Player.LevelsPassed % 3 == 0)
         {
             gameField[objects.HealthBooster.Position.X][objects.HealthBooster.Position.Y].Init = objects.HealthBooster;
+        }
+
+        if (objects.Player.LevelsPassed % 2 == 0)
+        {
+            gameField[objects.Dog.Position.X][objects.Dog.Position.Y].Current = objects.Dog;
         }
         
         gameField[objects.Player.Position.X][objects.Player.Position.Y].Current = objects.Player;
@@ -180,6 +184,17 @@ public class LevelInitializeHelper
         key.Position = new  Coordinates() { X = xList[rndXIndex], Y = new Random().Next(1, 24) };
     }
 
+    private static void SetDogSpawn(Dog key)
+    {
+        var xList = new List<int> { 7, 11, 15};
+        var rndXIndex = new Random().Next(0, xList.Count);
+
+        var x = xList[rndXIndex];
+        var y = new Random().Next(8, 18);
+        key.Position = new Coordinates() { X = x, Y = y };
+        key.SpawnPoint = new Coordinates() { X = x, Y = y };
+    }
+    
     public static void ClearAndGenerate(GameField gameField)
     {
         gameField.Objects.BarrelSpawners.Clear();

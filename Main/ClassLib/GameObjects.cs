@@ -21,4 +21,6 @@ public class GameObjects
     public HealthBooster HealthBooster { get; set; }
     
     public Key Key { get; set; }
+    
+    public Dog Dog { get; set; }
 }

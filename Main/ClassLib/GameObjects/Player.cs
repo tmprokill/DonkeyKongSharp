@@ -71,5 +71,5 @@ public class Player : GameObject
         FieldHelper.UpdateField(gameField, player, last.X, last.Y);
     }
 
-    private static readonly Predicate<GameObject> IsTaken = o => o is Flame or СannonBall;
+    private static readonly Predicate<GameObject> IsTaken = o => o is Flame or СannonBall or Dog;
 }

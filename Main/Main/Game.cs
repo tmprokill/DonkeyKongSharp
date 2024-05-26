@@ -21,6 +21,7 @@ public class Game
         var flameSpawnerThread = new Thread(() => BoneFire.Spawn(game));
         var barrelSpawnerThread = new Thread(() => Cannon.Spawn(game));
         var barrelThread = new Thread(() => СannonBall.Move(game));
+        var dogThread = new Thread(() => Dog.Move(game));
         var gamePrinterThread = new Thread(() => GamePrinter.PrintField(game));
         var nextLevelThread = new Thread(() => LevelInitializeHelper.LevelListener(game));
         var musicPlayerThread = new Thread(() => MusicPlayer.Play(game));
@@ -30,7 +31,8 @@ public class Game
             keyReaderThread, flameThread, 
             flameSpawnerThread, barrelSpawnerThread, 
             barrelThread, gamePrinterThread, 
-            nextLevelThread, musicPlayerThread
+            nextLevelThread, musicPlayerThread,
+            dogThread
         };
         
         while (game.Status != GameStatus.Stopped)
@@ -121,6 +123,7 @@ public class Game
         var health = new HealthBooster();
 
         var key = new Key();
+
         
         var flameEnemies = new ConcurrentBag<Flame>();
         var barrelEnemies = new ConcurrentBag<СannonBall>();

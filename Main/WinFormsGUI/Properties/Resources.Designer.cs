@@ -63,6 +63,16 @@ namespace WinFormsGUI.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AngryDog {
+            get {
+                object obj = ResourceManager.GetObject("AngryDog", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap BackGround {
             get {
                 object obj = ResourceManager.GetObject("BackGround", resourceCulture);
@@ -76,6 +86,16 @@ namespace WinFormsGUI.Properties {
         internal static System.Drawing.Bitmap BoneFire {
             get {
                 object obj = ResourceManager.GetObject("BoneFire", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap CalmDog {
+            get {
+                object obj = ResourceManager.GetObject("CalmDog", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

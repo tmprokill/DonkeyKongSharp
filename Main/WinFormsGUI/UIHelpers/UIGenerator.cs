@@ -90,7 +90,9 @@ namespace WinFormsGUI.UIHelpers
                 { "Player_Left", Properties.Resources.Player_Left },
                 { "Player_Right", Properties.Resources.Player_Right },
                 { "BackGround", Properties.Resources.BackGround },
-                { "Door_Opened", Properties.Resources.Door_Opened }
+                { "Door_Opened", Properties.Resources.Door_Opened },
+                { "AngryDog", Properties.Resources.AngryDog},
+                { "CalmDog", Properties.Resources.CalmDog}
             };
         }
     }

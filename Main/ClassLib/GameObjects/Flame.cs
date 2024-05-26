@@ -70,5 +70,6 @@ public class Flame : GameObject
             FieldHelper.UpdateField(gameFieldBoard, this, lastX, lastY);
         }
     }
+    
     private static readonly Predicate<GameObject> IsTaken = o => o is Player;
 }

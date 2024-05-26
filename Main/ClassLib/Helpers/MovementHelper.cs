@@ -63,4 +63,31 @@ public class MovementHelper
                 break;
         }
     }
+
+    public static Coordinates GetShortestPath(GameField game, Coordinates target)
+    {
+        var current = game.Objects.Dog.Position;
+        int stepX = 0;
+        int stepY = 0;
+
+        if (current.X < target.X && game[current.X + 1][current.Y].Init.Transparent)
+        {
+            stepX++;
+        }
+        else if (current.X > target.X && game[current.X - 1][current.Y].Init.Transparent)
+        {
+            stepX--;
+        }
+    
+        if (current.Y < target.Y && game[current.X][current.Y + 1 ].Init.Transparent) 
+        {
+            stepY++;
+        }
+        else if (current.Y > target.Y && game[current.X][current.Y - 1].Init.Transparent) 
+        {
+            stepY--;
+        }
+    
+        return new Coordinates { X = stepX, Y = stepY };
+    }
 }

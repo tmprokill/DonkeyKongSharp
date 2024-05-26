@@ -14,20 +14,21 @@ namespace Main
 {
     public class UIGame
     {
-        public static void InitThreads(GameField _game)
+        public static void InitThreads(GameField game)
         {
-            var flameThread = new Thread(() => Flame.Move(_game));
-            var flameSpawnerThread = new Thread(() => BoneFire.Spawn(_game));
-            var barrelSpawnerThread = new Thread(() => Cannon.Spawn(_game));
-            var barrelThread = new Thread(() => СannonBall.Move(_game));
-            var nextLevelThread = new Thread(() => LevelInitializeHelper.LevelListener(_game));
-            var musicPlayerThread = new Thread(() => MusicPlayer.Play(_game));
+            var flameThread = new Thread(() => Flame.Move(game));
+            var flameSpawnerThread = new Thread(() => BoneFire.Spawn(game));
+            var barrelSpawnerThread = new Thread(() => Cannon.Spawn(game));
+            var barrelThread = new Thread(() => СannonBall.Move(game));
+            var dogThread = new Thread(() => Dog.Move(game));
+            var nextLevelThread = new Thread(() => LevelInitializeHelper.LevelListener(game));
+            var musicPlayerThread = new Thread(() => MusicPlayer.Play(game));
 
             var threadList = new List<Thread>()
             {
                 flameThread,
                 flameSpawnerThread, barrelSpawnerThread,
-                barrelThread,
+                barrelThread, dogThread,
                 nextLevelThread, musicPlayerThread,
             };
 
@@ -60,6 +61,8 @@ namespace Main
 
             var key = new Key();
 
+            var dog = new Dog();
+
             var flameEnemies = new ConcurrentBag<Flame>();
             var barrelEnemies = new ConcurrentBag<СannonBall>();
 
@@ -75,6 +78,7 @@ namespace Main
             result.ExpBooster = exp;
             result.HealthBooster = health;
             result.Key = key;
+            result.Dog = dog;
 
             gameField.Objects = result;
 
