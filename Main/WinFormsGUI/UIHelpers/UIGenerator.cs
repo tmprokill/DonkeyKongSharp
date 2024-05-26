@@ -15,7 +15,7 @@ namespace WinFormsGUI.UIHelpers
 
         public void GenerateFieldUI(GameField game, GameForm form)
         {
-            const int cellSize = 30; // Размер каждого спрайта
+            const int cellSize = 41; // Размер каждого спрайта
 
             // Создаем TableLayoutPanel
             tableLayoutPanel = new TableLayoutPanel
@@ -91,8 +91,10 @@ namespace WinFormsGUI.UIHelpers
                 { "Player_Right", Properties.Resources.Player_Right },
                 { "BackGround", Properties.Resources.BackGround },
                 { "Door_Opened", Properties.Resources.Door_Opened },
-                { "AngryDog", Properties.Resources.AngryDog},
-                { "CalmDog", Properties.Resources.CalmDog}
+                { "AngryDogRight", Properties.Resources.AngryDogRight},
+                { "AngryDogLeft", Properties.Resources.AngryDogLeft},
+                { "CalmDogRight", Properties.Resources.CalmDogRight},
+                { "CalmDogLeft", Properties.Resources.CalmDogLeft}
             };
         }
     }

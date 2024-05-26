@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,8 @@ namespace WinFormsGUI
 
         private UIGenerator _uiGenerator;
 
+        public PrivateFontCollection _fontColletion;
+
         public GameForm(string login, MainForm form)
         {
             InitializeComponent();
@@ -33,6 +36,7 @@ namespace WinFormsGUI
             _mainForm = form;
             _game = UIGame.GenerateGame();
             _uiGenerator = new UIGenerator();
+            _fontColletion = FontInitializer.Initialize();
         }
         
         private void GameForm_Load(object sender, EventArgs e)
@@ -40,6 +44,7 @@ namespace WinFormsGUI
             _game.Objects.Player.Name = _login;
             CreateSpriteGrid();
             UIGame.InitThreads(_game);
+            FontInitializer.UpdateFont(Controls, _fontColletion);
         }
 
         private void GameForm_FormClosed(object sender, FormClosedEventArgs e)

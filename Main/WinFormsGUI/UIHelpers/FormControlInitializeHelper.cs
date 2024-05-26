@@ -23,7 +23,7 @@ public class FormControlInitializeHelper
             Text = GameFinishHelper.UpdateAndReturnStats(game),
             AutoSize = true,
             Font = new Font("Microsoft Sans Serif", 14),
-            Location = new Point(350, 300)
+            Location = new Point(800, 400)
         };
     }
 
@@ -31,11 +31,11 @@ public class FormControlInitializeHelper
     {
         var button = new Button
         {
-            Size = new Size(100, 100),
-            Location = new Point(650, 300),
+            Size = new Size(100, 150),
+            Location = new Point(1050, 400),
             BackColor = Color.Maroon,
-            Font = new Font("Microsoft Sans Serif", 14),
-            Text = "Finish the Game",
+            Font = FontInitializer.GetFont(gameForm._fontColletion, 14),
+            Text = "Finish the Game"
         };
 
         button.Click += (sender, e) => 

@@ -78,7 +78,6 @@ public class MovementHelper
         {
             stepX--;
         }
-    
         if (current.Y < target.Y && game[current.X][current.Y + 1 ].Init.Transparent) 
         {
             stepY++;

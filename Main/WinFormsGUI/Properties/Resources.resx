@@ -145,9 +145,6 @@
   <data name="Star" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Star1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="statistics_hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\statistics_hover1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Door_Opened" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Door_Opened1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -162,6 +159,9 @@
   </data>
   <data name="Cannonball" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Cannonball1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Player_Left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player_Left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="CupCake" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CupCake1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -202,13 +202,22 @@
   <data name="start_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\start_normal1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Player_Left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Player_Left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="statistics_hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\statistics_hover1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="AngryDog" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AngryDog.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="AngryDogLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AngryDogLeft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="CalmDog" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CalmDog.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="AngryDogRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AngryDogRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CalmDogLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CalmDogLeft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CalmDogRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CalmDogRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SonicFont" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Sonic Logo Bold RUS by vania5617sonfan.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

@@ -63,9 +63,19 @@ namespace WinFormsGUI.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap AngryDog {
+        internal static System.Drawing.Bitmap AngryDogLeft {
             get {
-                object obj = ResourceManager.GetObject("AngryDog", resourceCulture);
+                object obj = ResourceManager.GetObject("AngryDogLeft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap AngryDogRight {
+            get {
+                object obj = ResourceManager.GetObject("AngryDogRight", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +103,19 @@ namespace WinFormsGUI.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap CalmDog {
+        internal static System.Drawing.Bitmap CalmDogLeft {
             get {
-                object obj = ResourceManager.GetObject("CalmDog", resourceCulture);
+                object obj = ResourceManager.GetObject("CalmDogLeft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap CalmDogRight {
+            get {
+                object obj = ResourceManager.GetObject("CalmDogRight", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -287,6 +307,16 @@ namespace WinFormsGUI.Properties {
             get {
                 object obj = ResourceManager.GetObject("Player_Right", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
+        internal static byte[] SonicFont {
+            get {
+                object obj = ResourceManager.GetObject("SonicFont", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         

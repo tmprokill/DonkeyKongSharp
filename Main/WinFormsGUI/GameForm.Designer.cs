@@ -38,20 +38,20 @@
             // LivesLabel
             // 
             LivesLabel.AutoSize = true;
-            LivesLabel.Font = new Font("Sans Serif Collection", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LivesLabel.Location = new Point(954, 36);
+            LivesLabel.Font = new Font("Sans Serif Collection", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            LivesLabel.Location = new Point(1286, 106);
             LivesLabel.Name = "LivesLabel";
-            LivesLabel.Size = new Size(132, 32);
+            LivesLabel.Size = new Size(300, 68);
             LivesLabel.TabIndex = 0;
             LivesLabel.Text = "Player Lives:";
             // 
             // ScoreLabel
             // 
             ScoreLabel.AutoSize = true;
-            ScoreLabel.Font = new Font("Sans Serif Collection", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            ScoreLabel.Location = new Point(954, 93);
+            ScoreLabel.Font = new Font("Sans Serif Collection", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            ScoreLabel.Location = new Point(1286, 233);
             ScoreLabel.Name = "ScoreLabel";
-            ScoreLabel.Size = new Size(137, 32);
+            ScoreLabel.Size = new Size(312, 68);
             ScoreLabel.TabIndex = 1;
             ScoreLabel.Text = "Player Score:";
             // 
@@ -66,7 +66,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Maroon;
-            ClientSize = new Size(1182, 753);
+            ClientSize = new Size(1902, 1033);
             Controls.Add(ScoreLabel);
             Controls.Add(LivesLabel);
             Icon = (Icon)resources.GetObject("$this.Icon");

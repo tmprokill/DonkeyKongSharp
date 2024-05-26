@@ -10,9 +10,13 @@ public class Dog : GameObject
     
     public override bool Transparent { get; set; } = false;
 
-    public bool IsAngry { get; set; } = false;
+    public bool IsAngry { get; set; }
+    
+    public bool MovedLeft { get; set; }
 
-    public override string Image => IsAngry ? "AngryDog" : "CalmDog";
+    public override string Image => IsAngry ? 
+        MovedLeft ? "AngryDogLeft" : "AngryDogRight" : 
+        MovedLeft ? "CalmDogLeft" : "CalmDogRight";
     
     public override ConsoleColor Color { get; set; } = ConsoleColor.DarkCyan;
 
@@ -27,7 +31,7 @@ public class Dog : GameObject
                 
                 dog.MoveDog(game);
                 
-                Thread.Sleep((int) (1000 / game.LevelSettings.MovementSpeed));
+                Thread.Sleep((int) (800 / game.LevelSettings.MovementSpeed));
             }
             
             while (game.Status == GameStatus.Paused)
@@ -40,7 +44,19 @@ public class Dog : GameObject
     private void MoveDog(GameField game)
     {
         var change = MovementHelper.GetShortestPath(game, IsAngry ? game.Objects.Player.Position : SpawnPoint);
-        
+
+        if (change is { Y: 0, X: 0 })
+        {
+            MovedLeft = !MovedLeft;
+        }
+        else
+            MovedLeft = change.Y switch
+            {
+                1 => false,
+                -1 => true,
+                _ => MovedLeft
+            };
+
         int tempX = change.X + Position.X;
         int tempY = change.Y + Position.Y;
 
@@ -59,7 +75,6 @@ public class Dog : GameObject
             FieldHelper.UpdateField(game, this, lastX, lastY);
         }
     }
-    private static readonly Predicate<GameObject> IsTaken = o => o is Player;
 
     private void CheckPlayerInDomain(GameField game)
     {
@@ -76,4 +91,5 @@ public class Dog : GameObject
         }
         
     }
+    private static readonly Predicate<GameObject> IsTaken = o => o is Player;
 }

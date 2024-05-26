@@ -1,19 +1,24 @@
 using ClassLib;
 using FileWorkLib;
+using System.Drawing.Text;
+using WinFormsGUI.UIHelpers;
 
 namespace WinFormsGUI;
 
 public partial class MainForm : Form
 {
     private readonly string _login;
-    
+
     private readonly GameField _gameField;
-    
+
+    private PrivateFontCollection _fontCollection;
+
     public MainForm(string login)
     {
         InitializeComponent();
         _login = login;
         _gameField = new GameField();
+        _fontCollection = FontInitializer.Initialize();
     }
 
     private void StartButton_MouseHover(object sender, EventArgs e)
@@ -64,8 +69,9 @@ public partial class MainForm : Form
     private void StatisticsButton_Click(object sender, EventArgs e)
     {
         TextPanel.AutoScroll = false;
-        TextLabel.Location = new Point(200, 200);
+        TextLabel.Location = new Point(200, 250);
         TextLabel.Text = StatsSaver.GetResults(_login);
+        TextLabel.Font = FontInitializer.GetFont(_fontCollection, 22);
     }
 
     private void InstructionsButton_Click(object sender, EventArgs e)
@@ -75,6 +81,7 @@ public partial class MainForm : Form
         TextLabel.Text = InstructionsGetter.GetInstructions();
         TextLabel.MaximumSize = new Size(640, 0);
         TextPanel.AutoScroll = true;
+        TextLabel.Font = FontInitializer.GetFont(_fontCollection, 14);
     }
 
     private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -87,5 +94,10 @@ public partial class MainForm : Form
         Hide();
         GameForm gameForm = new GameForm(_login, this);
         gameForm.Show();
+    }
+
+    private void MainForm_Load(object sender, EventArgs e)
+    {
+        FontInitializer.UpdateFont(Controls, _fontCollection);
     }
 }

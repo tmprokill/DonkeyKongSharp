@@ -49,19 +49,19 @@ partial class MainForm
         // GameLabel
         // 
         GameLabel.AutoSize = true;
-        GameLabel.Font = new Font("Segoe Print", 16F);
-        GameLabel.Location = new Point(646, 18);
+        GameLabel.Font = new Font("Segoe Print", 24F, FontStyle.Regular, GraphicsUnit.Point, 204);
+        GameLabel.Location = new Point(1091, 9);
         GameLabel.Name = "GameLabel";
-        GameLabel.Size = new Size(352, 47);
+        GameLabel.Size = new Size(521, 70);
         GameLabel.TabIndex = 0;
         GameLabel.Text = "Welcome to GoldRunner";
         // 
         // StatisticsButton
         // 
         StatisticsButton.Image = Properties.Resources.statistics_normal;
-        StatisticsButton.Location = new Point(128, 387);
+        StatisticsButton.Location = new Point(177, 532);
         StatisticsButton.Name = "StatisticsButton";
-        StatisticsButton.Size = new Size(144, 76);
+        StatisticsButton.Size = new Size(235, 130);
         StatisticsButton.SizeMode = PictureBoxSizeMode.StretchImage;
         StatisticsButton.TabIndex = 2;
         StatisticsButton.TabStop = false;
@@ -72,9 +72,9 @@ partial class MainForm
         // InstructionsButton
         // 
         InstructionsButton.Image = Properties.Resources.instructions_normal;
-        InstructionsButton.Location = new Point(128, 277);
+        InstructionsButton.Location = new Point(177, 370);
         InstructionsButton.Name = "InstructionsButton";
-        InstructionsButton.Size = new Size(144, 76);
+        InstructionsButton.Size = new Size(235, 130);
         InstructionsButton.SizeMode = PictureBoxSizeMode.StretchImage;
         InstructionsButton.TabIndex = 1;
         InstructionsButton.TabStop = false;
@@ -85,9 +85,9 @@ partial class MainForm
         // ExitButton
         // 
         ExitButton.Image = Properties.Resources.exit_normal;
-        ExitButton.Location = new Point(128, 495);
+        ExitButton.Location = new Point(177, 697);
         ExitButton.Name = "ExitButton";
-        ExitButton.Size = new Size(144, 76);
+        ExitButton.Size = new Size(235, 130);
         ExitButton.SizeMode = PictureBoxSizeMode.StretchImage;
         ExitButton.TabIndex = 3;
         ExitButton.TabStop = false;
@@ -98,9 +98,9 @@ partial class MainForm
         // StartButton
         // 
         StartButton.Image = Properties.Resources.start_normal;
-        StartButton.Location = new Point(128, 164);
+        StartButton.Location = new Point(177, 207);
         StartButton.Name = "StartButton";
-        StartButton.Size = new Size(144, 76);
+        StartButton.Size = new Size(235, 130);
         StartButton.SizeMode = PictureBoxSizeMode.StretchImage;
         StartButton.TabIndex = 0;
         StartButton.TabStop = false;
@@ -118,15 +118,15 @@ partial class MainForm
         MenuPanel.Controls.Add(InstructionsButton);
         MenuPanel.Location = new Point(31, 37);
         MenuPanel.Name = "MenuPanel";
-        MenuPanel.Size = new Size(405, 660);
+        MenuPanel.Size = new Size(609, 972);
         MenuPanel.TabIndex = 5;
         // 
         // TextPanel
         // 
         TextPanel.Controls.Add(TextLabel);
-        TextPanel.Location = new Point(462, 68);
+        TextPanel.Location = new Point(888, 82);
         TextPanel.Name = "TextPanel";
-        TextPanel.Size = new Size(700, 629);
+        TextPanel.Size = new Size(888, 927);
         TextPanel.TabIndex = 6;
         // 
         // TextLabel
@@ -143,7 +143,7 @@ partial class MainForm
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = Color.Maroon;
-        ClientSize = new Size(1182, 753);
+        ClientSize = new Size(1902, 1033);
         Controls.Add(TextPanel);
         Controls.Add(MenuPanel);
         Controls.Add(GameLabel);
@@ -152,6 +152,7 @@ partial class MainForm
         StartPosition = FormStartPosition.CenterScreen;
         Text = "Main";
         FormClosed += MainForm_FormClosed;
+        Load += MainForm_Load;
         ((System.ComponentModel.ISupportInitialize)StatisticsButton).EndInit();
         ((System.ComponentModel.ISupportInitialize)InstructionsButton).EndInit();
         ((System.ComponentModel.ISupportInitialize)ExitButton).EndInit();

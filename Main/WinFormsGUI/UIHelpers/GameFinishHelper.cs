@@ -24,7 +24,7 @@ namespace WinFormsGUI.UIHelpers
 
             StatsSaver.UpdateStats(result);
             
-            if(ResultKeeper.GetScore() < result.HighScore) 
+            if (ResultKeeper.GetScore() < result.HighScore) 
             {
                 ResultKeeper.WriteScore(result.HighScore, result.Name);
             }

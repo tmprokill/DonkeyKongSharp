@@ -122,14 +122,13 @@ public class LevelInitializeHelper
         {
             gameField[objects.HealthBooster.Position.X][objects.HealthBooster.Position.Y].Init = objects.HealthBooster;
         }
-
-        if (objects.Player.LevelsPassed % 2 == 0)
-        {
-            gameField[objects.Dog.Position.X][objects.Dog.Position.Y].Current = objects.Dog;
-        }
+        
+        gameField[objects.Dog.Position.X][objects.Dog.Position.Y].Current = objects.Dog;
         
         gameField[objects.Player.Position.X][objects.Player.Position.Y].Current = objects.Player;
+        
         gameField[objects.FlameSpawner.Position.X][objects.FlameSpawner.Position.Y].Init = objects.FlameSpawner;
+        
         gameField[objects.Key.Position.X][objects.Key.Position.Y].Init = objects.Key;
     }
 

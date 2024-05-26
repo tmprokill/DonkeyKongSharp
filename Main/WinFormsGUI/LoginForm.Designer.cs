@@ -38,49 +38,50 @@
             // NameLabel
             // 
             NameLabel.AutoSize = true;
-            NameLabel.Font = new Font("Sans Serif Collection", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            NameLabel.Location = new Point(168, 293);
+            NameLabel.Font = new Font("Sans Serif Collection", 19.7999973F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            NameLabel.Location = new Point(429, 368);
             NameLabel.Name = "NameLabel";
-            NameLabel.Size = new Size(387, 56);
+            NameLabel.Size = new Size(777, 82);
             NameLabel.TabIndex = 0;
-            NameLabel.Text = "Log Into Your Account:";
+            NameLabel.Text = "LOG INTO YOUR ACCOUNT";
             // 
             // LoginBox
             // 
             LoginBox.BackColor = Color.Maroon;
             LoginBox.BorderStyle = BorderStyle.None;
-            LoginBox.Font = new Font("Sans Serif Collection", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LoginBox.Location = new Point(551, 292);
+            LoginBox.Font = new Font("Sans Serif Collection", 19.7999973F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            LoginBox.Location = new Point(961, 368);
             LoginBox.Name = "LoginBox";
-            LoginBox.Size = new Size(378, 57);
+            LoginBox.Size = new Size(378, 82);
             LoginBox.TabIndex = 1;
             LoginBox.KeyDown += LoginBox_KeyDown;
             // 
             // WelcomeLabel
             // 
             WelcomeLabel.AutoSize = true;
-            WelcomeLabel.Font = new Font("Sans Serif Collection", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            WelcomeLabel.Location = new Point(298, 67);
+            WelcomeLabel.Font = new Font("Sans Serif Collection", 23.9999981F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            WelcomeLabel.Location = new Point(675, 240);
             WelcomeLabel.Name = "WelcomeLabel";
-            WelcomeLabel.Size = new Size(582, 74);
+            WelcomeLabel.Size = new Size(1188, 99);
             WelcomeLabel.TabIndex = 2;
-            WelcomeLabel.Text = "Welcome to Gold Runner";
+            WelcomeLabel.Text = "WELCOME TO THE GOLD RUNNER";
             // 
             // HelpLabel
             // 
             HelpLabel.AutoSize = true;
-            HelpLabel.Location = new Point(396, 367);
+            HelpLabel.Font = new Font("Segoe UI", 12F);
+            HelpLabel.Location = new Point(779, 528);
             HelpLabel.Name = "HelpLabel";
-            HelpLabel.Size = new Size(322, 20);
+            HelpLabel.Size = new Size(366, 28);
             HelpLabel.TabIndex = 3;
-            HelpLabel.Text = "(type in your name and press enter to continue)";
+            HelpLabel.Text = "TYPE IN YOUR NAME AND PLACE ENTER";
             // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Maroon;
-            ClientSize = new Size(1182, 753);
+            ClientSize = new Size(1902, 1033);
             Controls.Add(HelpLabel);
             Controls.Add(WelcomeLabel);
             Controls.Add(LoginBox);
@@ -90,6 +91,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "LoginForm";
             FormClosed += LoginForm_FormClosed;
+            Load += LoginForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
