@@ -17,9 +17,10 @@ public class InstructionsGetter
         5. Key: Unlocks the locked door.
         6. Health Booster: Adds +1 to your health.
         7. Cupcake: Temporarily freezes all enemies.
+        8. Dog: Chases Player when he tries to come closer to the exit.
 
         Controls:
-        - Use arrow keys to move your character.
+        - Use WASD keys to move your character.
 
         Gameplay:
         1. Your character starts each level with three lives.
