@@ -48,13 +48,6 @@ public static class StatsSaver
                 }
             }
         }
-        
-        //Console.WriteLine($"{result.Name}'s Results:");
-        //Console.WriteLine($"High score is: {result.HighScore}");
-        //Console.WriteLine($"{result.LevelsPassed} Levels Passed");
-        //Console.WriteLine($"{result.PrizesCollected} Prizes Collected");
-        //Console.WriteLine($"{result.MovesCount} Moves Done");
-        //Console.WriteLine($"{result.LosesCount} Losses");
         return $"{result.Name}'s Results:" + "\n" +
                $"High score is: {result.HighScore}" + "\n" +
                $"{result.LevelsPassed} Levels Passed" + "\n" +
