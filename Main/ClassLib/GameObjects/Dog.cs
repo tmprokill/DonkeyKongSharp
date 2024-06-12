@@ -43,22 +43,22 @@ public class Dog : GameObject
 
     private void MoveDog(GameField game)
     {
-        var change = MovementHelper.GetShortestPath(game, IsAngry ? game.Objects.Player.Position : SpawnPoint);
+        var change = GetShortestPath(game);
 
-        if (change is { Y: 0, X: 0 })
+        if (change.Item1 == 0 && change.Item2 == 0)
         {
             MovedLeft = !MovedLeft;
         }
         else
-            MovedLeft = change.Y switch
+            MovedLeft = change.Item2 switch
             {
                 1 => false,
                 -1 => true,
                 _ => MovedLeft
             };
 
-        int tempX = change.X + Position.X;
-        int tempY = change.Y + Position.Y;
+        int tempX = change.Item1 + Position.X;
+        int tempY = change.Item2 + Position.Y;
 
         int lastX = Position.X;
         int lastY = Position.Y;
@@ -91,5 +91,81 @@ public class Dog : GameObject
         }
         
     }
+    
+    public (int, int) GetShortestPath(GameField game)
+    {
+        var distances = CalculateGrassFireDistances(game);
+        return IsAngry ? DetermineNextMove(distances, game) : MovementHelper.GetShortestPath(game, SpawnPoint);
+    }
+
+    private int[,] CalculateGrassFireDistances(GameField gameField)
+    {
+        var fieldWidth = gameField.Field[0].Length;
+        var fieldHeight = gameField.Field.Length;
+        var wavefrontDistances = new int[fieldHeight, fieldWidth];
+
+        for (var row = 0; row < fieldHeight; row++)
+        {
+            for (var col = 0; col < fieldWidth; col++)
+            {
+                wavefrontDistances[row, col] = int.MaxValue;
+            }
+        }
+
+        wavefrontDistances[gameField.Objects.Player.Position.Y, gameField.Objects.Player.Position.X] = 0;
+
+        var positionQueue = new Queue<(int x, int y)>();
+        positionQueue.Enqueue((gameField.Objects.Player.Position.X, gameField.Objects.Player.Position.Y));
+
+        while (positionQueue.Count > 0)
+        {
+            (var currentX, var currentY) = positionQueue.Dequeue();
+            var currentDistance = wavefrontDistances[currentY, currentX] + 1;
+
+            EnqueueNeighborIfValid(currentX - 1, currentY, currentDistance, wavefrontDistances, positionQueue, gameField);
+            EnqueueNeighborIfValid(currentX + 1, currentY, currentDistance, wavefrontDistances, positionQueue, gameField);
+            EnqueueNeighborIfValid(currentX, currentY - 1, currentDistance, wavefrontDistances, positionQueue, gameField);
+            EnqueueNeighborIfValid(currentX, currentY + 1, currentDistance, wavefrontDistances, positionQueue, gameField);
+        }
+
+        return wavefrontDistances;
+    }
+
+    private void EnqueueNeighborIfValid(int neighborX, int neighborY, int newDistance, 
+        int[,] distances, Queue<(int x, int y)> positionQueue, GameField gameField)
+    {
+        if (MovementHelper.CheckAccessibility((neighborX, neighborY), gameField) 
+            && distances[neighborY, neighborX] == int.MaxValue &&
+            MovementHelper.CheckTransparency((neighborX, neighborY), gameField))
+        {
+            distances[neighborY, neighborX] = newDistance;
+            positionQueue.Enqueue((neighborX, neighborY));
+        }
+    }
+
+    private (int deltaX, int deltaY) DetermineNextMove(int[,] distances, GameField gameField)
+    {
+        var minimumDistance = int.MaxValue;
+        var deltaX = 0;
+        var deltaY = 0;
+
+        UpdateNextMoveIfValid(Position.X - 1, Position.Y, distances, ref minimumDistance, ref deltaX, ref deltaY, gameField);
+        UpdateNextMoveIfValid(Position.X + 1, Position.Y, distances, ref minimumDistance, ref deltaX, ref deltaY, gameField);
+        UpdateNextMoveIfValid(Position.X, Position.Y - 1, distances, ref minimumDistance, ref deltaX, ref deltaY, gameField);
+        UpdateNextMoveIfValid(Position.X, Position.Y + 1, distances, ref minimumDistance, ref deltaX, ref deltaY, gameField);
+
+        return (deltaX, deltaY);
+    }
+
+    private void UpdateNextMoveIfValid(int nextX, int nextY, int[,] distances, ref int minimumDistance, ref int deltaX, ref int deltaY, GameField gameField)
+    {
+        if (MovementHelper.CheckAccessibility((nextX, nextY), gameField) && distances[nextY, nextX] < minimumDistance)
+        {
+            minimumDistance = distances[nextY, nextX];
+            deltaX = nextX - Position.X;
+            deltaY = nextY - Position.Y;
+        }
+    }
+    
     private static readonly Predicate<GameObject> IsTaken = o => o is Player;
 }

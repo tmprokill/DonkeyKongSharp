@@ -64,7 +64,7 @@ public class MovementHelper
         }
     }
 
-    public static Coordinates GetShortestPath(GameField game, Coordinates target)
+    public static (int, int) GetShortestPath(GameField game, Coordinates target)
     {
         var current = game.Objects.Dog.Position;
         int stepX = 0;
@@ -87,6 +87,6 @@ public class MovementHelper
             stepY--;
         }
     
-        return new Coordinates { X = stepX, Y = stepY };
+        return (stepX, stepY);
     }
 }
