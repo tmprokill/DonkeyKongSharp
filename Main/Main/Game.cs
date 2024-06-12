@@ -97,7 +97,7 @@ public class Game
                 {
                     Thread.Sleep(1000);
                 }
-            }
+            }   
         }
     }
 

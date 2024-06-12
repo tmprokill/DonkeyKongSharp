@@ -1,5 +1,4 @@
 ﻿using ClassLib.Enums;
-using ClassLib.Interfaces;
 
 namespace ClassLib;
 

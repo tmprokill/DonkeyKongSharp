@@ -4,9 +4,9 @@ namespace WinFormsGUI.UIHelpers
 {
     public class UIGenerator
     {
-        private TableLayoutPanel tableLayoutPanel;
+        private TableLayoutPanel _tableLayoutPanel;
         
-        private Dictionary<string, Bitmap> _spriteDictionary;
+        private readonly Dictionary<string, Bitmap> _spriteDictionary;
         
         public UIGenerator()
         {
@@ -18,7 +18,7 @@ namespace WinFormsGUI.UIHelpers
             const int cellSize = 41; // Размер каждого спрайта
 
             // Создаем TableLayoutPanel
-            tableLayoutPanel = new TableLayoutPanel
+            _tableLayoutPanel = new TableLayoutPanel
             {
                 Dock = DockStyle.Fill,
                 RowCount = game.Field.Length + 1,
@@ -28,8 +28,8 @@ namespace WinFormsGUI.UIHelpers
             // Устанавливаем размеры строк и столбцов
             for (int i = 0; i < game.Field.Length; i++)
             {
-                tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, cellSize));
-                tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, cellSize + 8));
+                _tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, cellSize));
+                _tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, cellSize + 8));
             }
 
             // Добавляем PictureBox в каждую ячейку
@@ -45,11 +45,11 @@ namespace WinFormsGUI.UIHelpers
                         Image = _spriteDictionary[currentObject.Image],
                         Dock = DockStyle.Fill
                     };
-                    tableLayoutPanel.Controls.Add(pictureBox, col, row);
+                    _tableLayoutPanel.Controls.Add(pictureBox, col, row);
                 }
             }
 
-            form.Controls.Add(tableLayoutPanel);
+            form.Controls.Add(_tableLayoutPanel);
         }
         
         public void UpdateFieldUI(GameField game, Label scoreLabel, Label liveLabel)
@@ -59,7 +59,7 @@ namespace WinFormsGUI.UIHelpers
                 for (int col = 0; col < game.Field[row].Length; col++)
                 {
                     // Найдем текущий PictureBox по позиции в TableLayoutPanel
-                    var pictureBox = (PictureBox) tableLayoutPanel.GetControlFromPosition(col, row);
+                    var pictureBox = (PictureBox) _tableLayoutPanel.GetControlFromPosition(col, row);
                     if (pictureBox != null)
                     {
                         var currentObject = game.Field[row][col].Current ?? game.Field[row][col].Init;

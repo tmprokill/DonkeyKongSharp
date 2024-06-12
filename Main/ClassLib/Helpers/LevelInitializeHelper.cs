@@ -17,6 +17,8 @@ public class LevelInitializeHelper
                     gameField.Objects.Player.Score += 10000;
                     gameField.Objects.Player.LevelsPassed += 1;
                     ClearAndGenerate(gameField);
+                    //change
+                    Level.IncreaseSpeed(gameField);
                 }
             }
             
