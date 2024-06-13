@@ -7,6 +7,8 @@ public class Key : GameObject
     public Coordinates Opens { get; set; }
     
     public override bool Transparent { get; set; } = true;
+
+    public override char Symbol { get; set; } = 'K';
     
     public override string Image { get; } = "Key";
     

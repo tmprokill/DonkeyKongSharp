@@ -21,6 +21,8 @@ public class Player : GameObject
     public Coordinates Position { get; set; }
     
     public override bool Transparent { get; set; } = false;
+
+    public override char Symbol { get; set; } = 'P';
     
     public override string Image => lastMove == 0 ? "Player_Right" : "Player_Left";
     

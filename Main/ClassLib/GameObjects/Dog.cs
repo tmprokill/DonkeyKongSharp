@@ -10,6 +10,8 @@ public class Dog : GameObject
     
     public override bool Transparent { get; set; } = false;
 
+    public override char Symbol { get; set; } = 'D';
+
     public bool IsAngry { get; set; }
     
     public bool MovedLeft { get; set; }

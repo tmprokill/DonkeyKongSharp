@@ -124,7 +124,8 @@ public class Game
 
         var key = new Key();
 
-        
+
+        var dog = new Dog();
         var flameEnemies = new ConcurrentBag<Flame>();
         var barrelEnemies = new ConcurrentBag<СannonBall>();
 
@@ -140,6 +141,7 @@ public class Game
         result.ExpBooster = exp;
         result.HealthBooster = health;
         result.Key = key;
+        result.Dog = dog;
         
         gameField.Objects = result;
 

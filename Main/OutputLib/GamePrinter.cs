@@ -37,7 +37,7 @@ public class GamePrinter
                 var currentObject  = f.Current ?? f.Init;
                 ForegroundColor = currentObject.Color;
                 
-                //Write($" {currentObject.Symbol} ");
+                Write($" {currentObject.Symbol} ");
                 
                 ForegroundColor = default;
             }

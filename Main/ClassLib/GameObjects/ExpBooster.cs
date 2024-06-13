@@ -5,6 +5,8 @@ public class ExpBooster : GameObject
     public Coordinates Position { get; set; }
     
     public override bool Transparent { get; set; } = true;
+
+    public override char Symbol { get; set; } = 'E';
     
     public override string Image { get; } = "Star";
 

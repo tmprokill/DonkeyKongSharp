@@ -5,6 +5,8 @@ public class HealthBooster : GameObject
     public Coordinates Position { get; set; }
     
     public override bool Transparent { get; set; } = true;
+
+    public override char Symbol { get; set; } = 'H';
     
     public override string Image { get; } = "HealthBooster";
     

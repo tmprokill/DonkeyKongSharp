@@ -11,6 +11,8 @@ public class Flame : GameObject
     public int HealPoints { get; set; }
     
     public override bool Transparent { get; set; } = false;
+
+    public override char Symbol { get; set; } = 'F';
     
     public override string Image => "Flame";
     

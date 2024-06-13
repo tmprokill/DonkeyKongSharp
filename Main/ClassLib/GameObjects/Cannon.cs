@@ -7,6 +7,8 @@ public class Cannon : GameObject
     public Coordinates Position { get; set; }
     
     public override bool Transparent { get; set; } = false;
+
+    public override char Symbol { get; set; } = 'S';
     
     public override string Image => Position.Y < 13 ? "Cannon_Left" : "Cannon_Right";
 

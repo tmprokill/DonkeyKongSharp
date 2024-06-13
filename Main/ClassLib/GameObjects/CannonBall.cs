@@ -9,6 +9,8 @@ public class СannonBall : GameObject
     public int Direction { get; set; } = 1;
     
     public override bool Transparent { get; set; } = false;
+
+    public override char Symbol { get; set; } = '*';
     
     public override string Image { get; } = "CannonBall";
     

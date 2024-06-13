@@ -8,6 +8,8 @@ public class CupCake : GameObject
     
     public override string Image { get; } = "CupCake";
 
+    public override char Symbol { get; set; } = 'C';
+
     public override ConsoleColor Color { get; set; } = ConsoleColor.Magenta;
 
     public static void Action((int, int) values, GameField gameField)
