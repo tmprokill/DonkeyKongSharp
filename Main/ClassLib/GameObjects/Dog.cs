@@ -102,17 +102,17 @@ public class Dog : GameObject
     {
         var fieldWidth = gameField.Field[0].Length;
         var fieldHeight = gameField.Field.Length;
-        var wavefrontDistances = new int[fieldHeight, fieldWidth];
+        var grassFireWaveDistances = new int[fieldHeight, fieldWidth];
 
         for (var row = 0; row < fieldHeight; row++)
         {
             for (var col = 0; col < fieldWidth; col++)
             {
-                wavefrontDistances[row, col] = int.MaxValue;
+                grassFireWaveDistances[row, col] = int.MaxValue;
             }
         }
 
-        wavefrontDistances[gameField.Objects.Player.Position.Y, gameField.Objects.Player.Position.X] = 0;
+        grassFireWaveDistances[gameField.Objects.Player.Position.Y, gameField.Objects.Player.Position.X] = 0;
 
         var positionQueue = new Queue<(int x, int y)>();
         positionQueue.Enqueue((gameField.Objects.Player.Position.X, gameField.Objects.Player.Position.Y));
@@ -120,15 +120,15 @@ public class Dog : GameObject
         while (positionQueue.Count > 0)
         {
             (var currentX, var currentY) = positionQueue.Dequeue();
-            var currentDistance = wavefrontDistances[currentY, currentX] + 1;
+            var currentDistance = grassFireWaveDistances[currentY, currentX] + 1;
 
-            EnqueueNeighborIfValid(currentX - 1, currentY, currentDistance, wavefrontDistances, positionQueue, gameField);
-            EnqueueNeighborIfValid(currentX + 1, currentY, currentDistance, wavefrontDistances, positionQueue, gameField);
-            EnqueueNeighborIfValid(currentX, currentY - 1, currentDistance, wavefrontDistances, positionQueue, gameField);
-            EnqueueNeighborIfValid(currentX, currentY + 1, currentDistance, wavefrontDistances, positionQueue, gameField);
+            EnqueueNeighborIfValid(currentX - 1, currentY, currentDistance, grassFireWaveDistances, positionQueue, gameField);
+            EnqueueNeighborIfValid(currentX + 1, currentY, currentDistance, grassFireWaveDistances, positionQueue, gameField);
+            EnqueueNeighborIfValid(currentX, currentY - 1, currentDistance, grassFireWaveDistances, positionQueue, gameField);
+            EnqueueNeighborIfValid(currentX, currentY + 1, currentDistance, grassFireWaveDistances, positionQueue, gameField);
         }
 
-        return wavefrontDistances;
+        return grassFireWaveDistances;
     }
 
     private void EnqueueNeighborIfValid(int neighborX, int neighborY, int newDistance, 
@@ -142,7 +142,7 @@ public class Dog : GameObject
             positionQueue.Enqueue((neighborX, neighborY));
         }
     }
-
+    //метод, що з'ясовує найближчу клітинку
     private (int deltaX, int deltaY) DetermineNextMove(int[,] distances, GameField gameField)
     {
         var minimumDistance = int.MaxValue;
@@ -156,7 +156,7 @@ public class Dog : GameObject
 
         return (deltaX, deltaY);
     }
-
+    
     private void UpdateNextMoveIfValid(int nextX, int nextY, int[,] distances, ref int minimumDistance, ref int deltaX, ref int deltaY, GameField gameField)
     {
         if (MovementHelper.CheckAccessibility((nextX, nextY), gameField) && distances[nextY, nextX] < minimumDistance)
